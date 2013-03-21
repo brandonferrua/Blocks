@@ -1,0 +1,39 @@
+﻿// ************************************************************************************************************************
+// * Package -> News-Forum                                                                                                *
+// ************************************************************************************************************************
+
+// --------------------------------------------------------- //
+// Variables                                              
+// --------------------------------------------------------- //
+
+    @import "vars";
+
+// --------------------------------------------------------- //
+// Config                                              
+// --------------------------------------------------------- //
+    
+    // Block
+
+    $trigger_b-shoutbox-a : true;
+    $trigger_b-tag-a      : true;
+    $trigger_b-tagCloud-a : true;
+
+    // Plugin
+
+    $trigger_p-article-a     : true;
+    $trigger_p-attachments-a : true;
+    $trigger_p-browser-a     : true;
+    $trigger_p-browser-b     : true;
+    $trigger_p-comments-a    : true;
+    $trigger_p-comments-b    : true;
+    $trigger_p-forum-a       : true;
+    $trigger_p-infractions-a : true;
+    $trigger_p-result-a      : true;
+    $trigger_p-streams-a     : true;
+    $trigger-userContentManager: true;
+    $trigger_p-widget-a      : true;
+    $trigger_p-toc-a         : true;
+
+    // Layout
+
+    @import "layout";

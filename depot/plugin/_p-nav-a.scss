@@ -1,0 +1,151 @@
+﻿// ★★ Plugin -> Nav (p-nav-a) ★★
+//
+// ✎ Standard horizontal navigation with block menu items
+//
+// ⌚ Level 1.00 (02/017/12)
+//
+// ☍ Components:
+//     - Item (p-nav-item)
+//     - Search (p-nav-search)
+//
+// ☆ Sub-Classes:
+//     - Null
+//
+// ☯ Browser Support:
+//     - Chrome
+//     - FireFox
+//     - Safari
+//     - IE9/8/7
+// 
+// --------------------------------------------------------- //
+
+// Mixin
+// --------------------------------------------------------- //
+
+@mixin p-nav-a {
+    @include group;
+    background: $navBg;
+    @include boxShadow($nav-boxShadow);
+    z-index: 2; // Ensure navigation is on top of header's stack so dropdown is never hidden -JB 3/6/13
+
+    // Item
+    .p-nav-item {
+        @include u-dropDown-z;
+        > a {
+            @include font($font-weight: $navItem-fontWeight, $font-size: $navItem-fontSize, $text-transform: $navItem-textTransform, $font-family: $navItem-fontFamily);
+            @include textShadow($navItem-textShadow);
+            @include boxShadow($nav-boxShadow);
+            background: $navItem-bg;
+            border: $navItem-border;
+            border-right-width: 0;
+            color: $navItem-color;
+            display: block;
+            padding: $navItem-padding;
+            text-align: center;
+            &:hover { background-color: $navItem-bg-hover; color: $navItem-color-hover; }
+        }
+        &:last-child > a { border-right-width: 1px; } // Reinsert last border
+        // DropDown
+        &.section {
+            // Dropdown Link
+            > a {
+                @include triangle($direction: "down", $location: ":after", $size: 6px, $color: $navItem-color, $spacing: 6px);
+                &:hover {
+                    &:after { border-top-color: $navItem-color-hover; }
+                }
+            }
+            // Dropdown
+            > ul {
+                background: $navDropDown-bg;
+                display: block;
+                padding: 3px 0;
+                width: 200px;
+                z-index: 1000;
+                @include boxShadow(0 5px 5px rgba(0,0,0,.7));
+                > li { 
+                    display: block; 
+                    float: none; 
+                    > span { // Non-links - Usually section breaks
+                        padding: $navItemDropDown-padding; 
+                        display: block; 
+                        background: $tertiaryColor; 
+                        font: $navItem-font; 
+                        color: $font-colorTertiary; 
+                    } 
+                    > a { // Dropdown Block Links
+                        @include font($font-weight: $navItem-fontWeight, $font-size: $navItem-fontSize, $text-transform: $navItem-textTransform, $font-family: $navItem-fontFamily);
+                        @include boxShadow($nav-itemSecondLevel-boxShadow);
+                        background: transparent;
+                        text-align: left; 
+                        padding: $navItemDropDown-padding;
+                        color: $nav-itemSecondLevel-color;
+                        border-top: $nav-itemSecondLevel-border;
+                        line-height: normal;
+                        font-size: $nav-itemSecondLevel-fontSize;
+                        &:hover { background: $nav-itemSecondLevel-bgHover; color: $nav-itemSecondLevel-color; }
+                    }
+                    &:last-child > a { border-bottom: $nav-itemSecondLevel-border; }
+                }
+                // Section within a section is for tiered categories -- Flows out to the right
+                .section > a {
+                    @include triangle($direction: "right", $location: ":after", $size: 6px, $color: $navItem-color, $spacing: 6px);
+                    &:after {
+                        position: absolute;
+                        right: 6px;
+                        top: 10px;
+                    }
+                }
+            }
+            &:hover > a { background: $navDropDown-bg; color: $nav-itemSecondLevel-color; } 
+        }
+    }
+} // END p-nav-a
+
+// JS Dropdowns
+.dropdown {
+    padding: 0;
+    position: absolute;
+    z-index: 99;
+
+    a { border: none; background: none; }
+
+    // Column (base)
+
+    .column {
+        float: left; // Lets column break when necessary
+        width: $navItem-width;
+        border: $navItem-border;
+        border-bottom-width: 3px;
+        border-top-width: 0;
+        background-color: $navItem-bg-hover;
+        > p { 
+            border-top: $navItem-border; 
+            @include boxShadow(inset 0 1px 0 rgba(255,255,255,.1)); 
+            margin: 0; // Reset
+            a {
+                padding: $navItemDropDown-padding; 
+                color: $navItem-color;
+                text-align: left;
+                display: block;
+                position: relative;
+            }
+            &.dropdown-hover a { background-color: $navItem-bg-hover; color: $navItem-color-hover; }            
+       }
+       > h3 { padding: $navItemDropDown-padding; display: block; background: $tertiaryColor; font: $navItem-font; color: $font-colorTertiary; border-top: $navItem-border; margin: 0; }        
+       .has-submenu > a {
+            &:after {
+                border-left: 5px solid $navItem-color;
+                border-top: 5px solid transparent;
+                border-bottom: 5px solid transparent;
+                content: "";
+                display: inline-block;
+                height: 0;
+                margin-left: 6px;
+                width: 0;
+                position: absolute;
+                right: 6px;
+                top: 7px;
+            }
+        }
+    }
+}

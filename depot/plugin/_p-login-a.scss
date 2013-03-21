@@ -1,0 +1,51 @@
+﻿// ★★ Plugin -> Login (p-login-a) ★★
+
+// ✎ Login static + Login modal
+
+// ⌚ Level 1.00 (02/017/12)
+
+// ☍ Components:
+//     - Null
+
+// ☆ Sub-Classes:
+//     - Null
+
+// ☯ Browser Support:
+//     - Chrome
+//     - FireFox
+//     - Safari
+//     - IE9/8/7
+ 
+// -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+@mixin p-login-a {
+	@include group;
+	margin-bottom: $leading; 
+
+    .h2 { margin-bottom: $leading; }
+
+	.p-login-form {
+		@include col(6);
+		margin-left: 0;
+	}
+	.p-login-reg {
+		@include col(6);
+	}
+
+    // --------------------------------------------------------- //
+    // Login Message                                              
+    // --------------------------------------------------------- //
+
+    .login-message {
+        @include borderRadius(4px);
+
+        background-color: $box-bg;
+        border: $box-border;
+        line-height: 1.5em;
+        padding: 10px;
+    }
+
+} // END p-login-a
+
+@mixin p-login-b {}
+

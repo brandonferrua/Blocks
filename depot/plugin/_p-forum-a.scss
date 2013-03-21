@@ -1,0 +1,467 @@
+﻿// *
+// * Plugin -> Forums (p-forum-a)
+// * ====================================================================================================================
+
+
+// --------------------------------------------------------- //
+// BASE: Forums | STATE: Base
+// --------------------------------------------------------- //
+
+%p-forum-a_base {
+
+    // --------------------------------------------------------- //
+    // Header
+    // --------------------------------------------------------- //
+
+    .h2 { margin-bottom: $leading / 2; @include group; h2 { margin-bottom: 0; } }
+    .sub-header { display: block; overflow: hidden; } // Overflow prevents word wrapping around user actions -JB (12/4/12)
+    .user-actions { float: right; margin-bottom: $leading / 2; }
+    .user-actions .user-actions { float: none; }
+
+    // --------------------------------------------------------- //
+    // Forum Options
+    // --------------------------------------------------------- //
+
+    .forum-options { float: right; margin-bottom: $leading / 2; }
+
+    // * Temp until markup is corrected
+
+    .h2.caption-threads { @extend .forum-options; float: none; }
+    
+    .user-action-tools {
+
+        &:hover .u-dropDownMenu { left: auto; right: 0; }
+        .u-dropDownMenu:before { right: 8px; left: auto; }
+        .u-dropDownMenu:after { right: 7px; left: auto; }
+    }
+
+    // ** Fallback for markup discrenpencies between some options being generated as user actions
+    // ** while some aren't, ex forum comment author menu generates user acitons while forum
+    // ** tools do not. No related classes/structure so three unique classes had to be targeted -JB (1/14/13)
+
+    .user-actions-threads .b-userAction-item,
+    .user-actions-thread .b-userAction-item,
+    .user-actions-forums .b-userAction-item {
+
+        // .ie7 &,
+        .ie8 & {
+            @include inline-block;
+            
+            & + .b-userAction-item { margin-left: 6px; }
+
+            > a { @include u-button-z; }
+        }
+    }
+
+
+    // --------------------------------------------------------- //
+    // Announcements
+    // --------------------------------------------------------- //
+
+    .announcements {             
+        @extend .b-table;
+
+        .forum-thread-row {
+            @include group;
+            @include boxShadow($forumCell-boxShadow);
+            background: $forum-bg;
+            border: $tableCell-border;
+
+            & + .forum-thread-row { border-top-width: 0; }
+        }
+        
+        .col-status { @include inline-block; border-right: $tableCell-border; width: auto; } // Padding same as forum table cell; width reset for table width -JB (11/12/12)
+        .title { @include inline-block; margin-left: 8px; }
+    } 
+
+    // --------------------------------------------------------- //
+    // Admin Controls
+    // --------------------------------------------------------- //
+
+    .admin-controls {
+        @include group;
+        
+        float: right;
+        margin-left: 2em;
+        width: 50%;
+
+        .filters { margin-left: 0; min-height: 1px; } // 1px if container is empty for layout rendering -JB (11/12/12)
+        .bulk-moderation { text-align: right;}
+    }
+
+    // --------------------------------------------------------- //
+    // Statistics
+    // --------------------------------------------------------- //
+
+    .statistics {
+        @include group;
+        border-top: 1px solid $box-borderColor;
+        padding-top: $leading;
+        .count{ float: right; margin-left: 20px; }
+        .info { overflow: hidden; } // Prevents word wrapping around .count -JB (12/4/12)
+    }
+
+    // --------------------------------------------------------- //
+    // Table
+    // --------------------------------------------------------- //
+
+    .b-table {
+        th { @include background($color: $forumHeader-bg, $gradient: $forumHeader-gradient); color: $forumHeader-color; }
+        
+        td,
+        td:nth-child(even),
+        td:nth-child(odd) { @include boxShadow($forumCell-boxShadow); background: $forum-bg; color: $forum-color; } // Reset table alternating bgs -JB (12/4/12)
+
+        td:not(.col-status):not(.col-actions) { padding: 8px; word-wrap: break-word; } // Excluded from above selector for specificity reasons -JB (12/11/12)
+    }
+
+    // --------------------------------------------------------- //
+    // Columns
+    // --------------------------------------------------------- //
+
+    .col-actions { padding: 8px 0; text-align: center; width: 39px; } // Same white-space amount as table padding -JB (12/11/12)
+    .col-actions > input { vertical-align: middle; }
+    .col-count { text-align: center; overflow: hidden; text-overflow: ellipsis; width: 6em; } // Ensure proper size -JB (11/12/12)
+
+    .col-forum,
+    .col-thread {
+
+        .thread-actions + .thread-title { display: block; margin-right: 100px; } // Title container, if admin actions exist, prevent line breaking on hover -JB (1/29/13)
+
+        .title,
+        .title > a {
+            color: $forumTitle-color;
+            font-size: $forumTitle-size;
+            font-family: $font-family;
+            margin: 0 5px 0 0;
+            line-height: 1.5em;
+
+            &:hover { color: $forumTitle-colorHover; }
+        }
+
+        .active-viewers { color: $forum-color; font-size: $font-sizeSmaller; }
+        
+        .description,
+        .forum-subs { display: block; font-size: 11px; line-height: 1.5em; }
+
+        .forum-subs { font-weight: bold; a { font-weight: normal; } }
+    }
+
+    .col-last-post {
+        white-space: nowrap;
+        width: 25%;
+
+        &.b-table-heading { text-align: left; }
+
+        .post-author,
+        .post-date { font-size: $font-sizeSmaller; line-height: 1.5em; }
+
+        .post-date > abbr { border-bottom: none; }
+
+        // * Different markup structure for "Latest Post" column at thread listing level, these are primarily resets; no post title -JB (12/12/12)
+
+        .post-date .go-next {
+            background-position: right center;
+            height: auto;
+            padding-right: 10px;
+            text-indent: 0;
+            width: auto;
+
+            > abbr { cursor: pointer; }
+        }
+    }
+
+
+    .col-thread {
+
+        .b-pagination-b { float: none; margin: .2em 0; }
+    }
+
+    // --------------------------------------------------------- //
+    // Status & Icons - Cascade of styles important -JB (11/12/12)
+    //  - Unread
+    //  - Read
+    //  - Announcement
+    //  - Poll
+    //  - Pinned
+    //  - Locked
+    //  - Redirect
+    // --------------------------------------------------------- //
+
+    .col-status { padding: 8px 0; text-align: center; width: 49px; } // Width adjusted to have same white-space as td padding -JB (11/12/12)
+
+    .status-icon { // Block display added by button mixin below -JB (11/14/12)
+        height: 32px;
+        width: 32px;
+        vertical-align: middle;
+        img { max-width: 32px; }
+    }
+
+    .without-icon .status-icon,
+    .forum-thread-row .status-icon {
+        @include u-button-z($bg-top: $forumStatus-bgUnreadTop, $bg-bottom: $forumStatus-bgUnreadBot, $padding: "0");
+    }
+        
+    .state { 
+        background: $forumStatusIcon; 
+        display: block;
+        height: 32px;
+        overflow: hidden;
+        width: 32px;
+    }
+
+    // Unread
+
+    .forum-row-not-seen-latest-thread,
+    .forum-thread-row-unread {
+
+        .state { background-position: -62px 0; }
+
+        .title,
+        .title > a { font-weight: bold; }
+    }
+
+    // Read
+
+    .forum-row-seen-latest-thread .without-icon .status-icon,
+    .forum-thread-row-read .status-icon {
+        @include background($color: $forumStatus-bgRead, $gradient: $forumStatus-gradientRead);
+    } 
+
+    .forum-row-seen-latest-thread,
+    .forum-thread-row-read {
+
+        .state { background-position: -108px 0; }
+        
+        .title,
+        .title > a { font-weight: normal; }
+    }
+
+    // Deleted
+    .forum-thread-row-deleted-with-note,
+    .forum-thread-row-deleted
+    {
+        .title
+        {
+            text-decoration: line-through;
+        }
+    }
+
+    // Announcement
+
+    .forum-announcement .state { background-position: -15px 0; }
+
+    // Poll
+
+    .forum-thread-row-poll .state { background-position: -154px 0; }
+
+    // Pinned
+
+    .forum-thread-row-pinned .state { background-position: -246px 0; }
+
+    // Locked
+
+    .forum-row-locked .state,
+    .forum-thread-row-locked .state { background-position: -200px 0; }
+
+    // Redirect
+
+    .forum-thread-row-redirect .state { background-position: -294px 0; }
+
+    // --------------------------------------------------------- //
+    // Threads
+    // --------------------------------------------------------- //
+
+    .thread-type {
+        background: $tertiaryColor;
+        border: $paginationBorder;
+        border-radius: 2px;
+        color: $font-colorTertiary;
+        cursor: default;
+        @include inline-block;
+        font-size: 9px;
+        line-height: 1em;
+        padding: 3px 6px;
+        text-transform: uppercase;
+        vertical-align: top;
+        float: left;
+        margin: 0 3px 3px 0;
+    }
+
+    .thread-author { clear: both; }
+
+    .thread-actions {
+        float: right;
+        position: relative; // In place for .no-opacity fallback
+
+        .thread-actions-icons {
+            @include group;            
+            @include transition (background, .5ms, linear);
+            white-space: nowrap; // In place for .no-opacity fallback
+
+            // Fallback 1 of 2
+
+            .no-opacity & { position: absolute; left: -9999px; }
+
+            li {
+                @include inline-block;
+                margin-left: 2px;
+
+                > a { cursor: pointer; width: 16px; height: 16px; display: block; text-indent: -9000px;  opacity: .75;}
+
+                a.thread-action-add { background-image: url("#{$imageURL-core}/forums/thread-action-add.png"); }
+                a.thread-action-delete{ background-image: url("#{$imageURL-core}/forums/thread-action-delete.png"); }
+                a.thread-action-lock { background-image: url("#{$imageURL-core}/forums/thread-action-lock.png"); }
+                a.thread-action-pin { background-image: url("#{$imageURL-core}/forums/thread-action-pin.png"); }
+                a.thread-action-unpin { background-image: url("#{$imageURL-core}/forums/thread-action-unpin.png"); }
+                a.thread-action-unlock { background-image: url("#{$imageURL-core}/forums/thread-action-unlock.png"); }
+                a.thread-action-rename { background-image: url("#{$imageURL-core}/forums/thread-action-rename.png"); }
+
+                
+            }
+        }
+    }
+
+    .forum-thread-row .thread-actions .thread-actions-icons a { display: none; }
+    .forum-thread-row:hover .thread-actions .thread-actions-icons a { display: block; }
+    .forum-thread-row:hover .thread-actions .thread-actions-icons a:hover { opacity: 1 !important; }
+
+    // Fallback 2 of 2
+
+    .no-opacity & .forum-thread-row:hover .thread-actions .thread-actions-icons { left: auto; right: 0; }
+
+    .thread-status-note { float: right; font-size: $font-sizeSmaller; }
+
+    // --------------------------------------------------------- //
+    // Misc - TODO: Refactor
+    // --------------------------------------------------------- //
+
+    .p-forum-poll { margin-bottom: $leading; }
+
+    .p-forum-thread-form {
+
+        .form-tools { float: right; }
+        .attachment-form { position: absolute; left: -2000px; }
+    }
+
+    .thread-prefix { margin-right: 4px; } // DEV: This is moderator entered HTML, inside of a span 
+
+} // END /%p-forum-a_base
+
+// --------------------------------------------------------- //
+// BASE: Forums | STATE: Index
+// --------------------------------------------------------- //
+
+%p-forum-a_index {
+
+    .b-table { table-layout: fixed; } // Fixed to control user generated content from break tables, structure should be consistent -JB (12/11/12)
+}
+
+// --------------------------------------------------------- //
+// BASE: Forums | STATE: Create
+// --------------------------------------------------------- //
+
+%p-forum-a_create {
+
+    // *** Design and code still need consideration -JB (11/14/12)
+
+    //.form-tools { float: right; }
+    //.attachment-form { position: absolute; left: -9999px; }
+    .p-poll-form-a { clear: right; }
+    .p-poll-form-a h3 { margin-bottom: $leading; }
+}
+
+// --------------------------------------------------------- //
+// BASE: Forums | STATE: Search
+//
+// * Uses Cobalt generated markup, no editable markup -JB (1/9/13)
+// --------------------------------------------------------- //
+
+%p-forum-a_search {
+
+    // Resets
+
+    label {
+        @include inline-block;
+
+        margin-bottom: 0;
+        vertical-align: baseline; // Reset @include vertical-align property -JB (1/16/13)
+    }
+
+    input[type="checkbox"] { margin: 0; float: none; }
+    span.tip { cursor: help; }
+
+    // Header
+
+    .h2 { margin-bottom: $leading; }
+    .h2 > h2 { border-bottom: $box-border; margin: 0; line-height: 1.6; }
+
+    // Main Containers
+
+    .form-field { @include group; } // Main container, list item -JB (1/9/13)
+    .form-field > label:first-child { float: left; margin-right: $forumSearchLabel-margin; width: $forumSearchLabel-width; } // Setup colums -JB (1/9/13)
+    .form-field > label:first-child > span { vertical-align: middle; }
+    
+    // Inputs, Radios, Etc...
+
+    .form-controls:only-child { @include col(10); margin: 0; } // Prevent wrapping around float for containers -JB (1/9/13)
+    .form-controls label + label { margin-left: .5em; } // Space inline-block labels -JB (1/9/13)
+
+    // Extended Layout
+
+    .forum-search-container {
+        position: relative; // Position reference for children -JB (1/11/13)
+
+        // Form options that follow other inputs
+
+        .form-field + [class^="form-"] {
+            display: inline-block;
+            float: none;
+            margin-top: -($leading / 2); // Vertically align in combo with top: 50% -JB (1/11/13)
+            margin-left: $forumSearchLabel-margin + $forumSearchLabel-width + 20px;
+            position: absolute;
+            top: 50%; left: $formWidth;
+            width: auto;
+        }
+
+        .form-field + [class^="form-"] label { display: inline-block; }     
+    }
+
+    .forum-selection {
+        background: $box-bg;
+        border: $box-border;
+        display: none; // JS reveals -JB (1/16/13)
+        margin: ($leading / 2) 0 ($leading / 2) ($forumSearchLabel-margin + $forumSearchLabel-width);
+        max-height: ($leading * 8) + 6px; // Change multiplier for how many forums you want to show; 8px equal borders and child top margin -JB (1/16/13)
+        overflow: auto; // Allow scrolling if list expand too far -JB (1/16/13)
+        padding: 0 6px;
+
+        .field-choice { height: $leading; } // Ensure child fits max-height multiplier -JB (1/16/13)
+        .field-choice:first-child { margin-top: 4px; } // Margins applied to children of .forum-selection for better control of overflow -JB (1/16/13)
+        .field-choice:last-child { margin-bottom: 4px; }
+    }
+
+    // Footer
+
+    .form-footer { border-top: $box-border; padding-top: $leading / 2; margin-top: $leading * 1.5; }
+
+    // Unique instances
+
+    #form-field-display-type .covert-list .tip { border-bottom: none; } // Has .tip class although generating no tip text, asked to resolve visually via CSS -JB (1/14/13)
+}
+
+// --------------------------------------------------------- //
+// Mixins
+// --------------------------------------------------------- //
+
+@mixin p-forum-a {
+
+    @extend %p-forum-a_base;
+
+    &.s-index,
+    &.s-thread,
+    &.s-results { @extend %p-forum-a_index; }
+
+    &.s-create { @extend %p-forum-a_create; }
+    &.s-search { @extend %p-forum-a_search; }
+}

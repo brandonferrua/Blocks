@@ -1,0 +1,139 @@
+// *
+// * Theme -> Contest Template (t-contest)
+// *
+// * Starter template for skinning contest. Do not compile this into Titanium,
+// * Sass --watch this file independently and copy outputted .css into each
+// * specific contest's CP "Custom CSS" section.
+// * ====================================================================================================================
+
+@import "../utility/shared/u-helper-z"; // Make helpers available for compiling -JB (1/23/13)
+
+// --------------------------------------------------------- //
+// Contest Variables
+//  - These variables are outside the scope of CB, used
+//    for quick setup of a contest -JB (1/23/13)
+// --------------------------------------------------------- //
+
+// Page
+
+$contest-bg             : null;
+$contest-color          : null;
+
+// Headers
+
+$contestHeader-color    : null;
+
+// Entry Form & Info
+
+$contestEntry-bg        : null;
+$contestEntry-border    : null;
+$contestEntry-margin    : null;
+
+// Buttons
+
+$contestButton-bgTop    : null;
+$contestButton-bgBottom : null;
+
+// Tabs
+
+$contestTab-selected    : null;
+
+// Site Header
+
+$contestSiteHeader-bg   : null;
+
+// --------------------------------------------------------- //
+// Parent Elements
+//  - Consist mainly of resets, hiding unnecessary elements,
+//    and setting the contest's main bg asset.
+// --------------------------------------------------------- //
+
+body { background: $contest-bg; }
+#site-main { background: transparent none; }
+.atf { display: none; }
+
+// Main Header
+
+.p-header { background: $contestSiteHeader-bg; margin-bottom: 20px; } // Keep spacing after header consistent for BG alignment -JB (1/23/13)
+
+// Breadcrumbs
+
+.b-breadcrumb { position: absolute; left: -99999px; } // Removed breadcrumbs but keep in DOM -JB (1/23/13)
+
+// Content
+
+.single-column #content { border-width: 0; padding-top: 0; } // Reset all possible spacing elements so contest dictactes spacing -JB (1/23/13)
+
+// --------------------------------------------------------- //
+// THEME: Contest
+// --------------------------------------------------------- //
+
+.body-contest .t-contest {  // Extra selector for specificty -JB (1/23/13)
+    color: $contest-color;
+
+    // --------------------------------------------------------- //
+    // Base
+    // --------------------------------------------------------- //
+
+    .p-contest-entryForm,
+    .p-contest-entryInfo {
+        background: $contestEntry-bg;
+        border: $contestEntry-border;
+        margin-top: $contestEntry-margin;
+    }
+
+    .p-contest-entryForm { }
+    .p-contest-entryInfo { }
+
+    // --------------------------------------------------------- //
+    // Contest Headers & Pre-content
+    // --------------------------------------------------------- //
+
+    // Page Header
+
+    .h2 { }
+
+    // Section Headers
+
+    .contest-header { color: $contestHeader-color; }
+
+    // Generic Headers
+
+    h1, h2, h3, h4, h5, h6 { color: $contestHeader-color; } // CP generated markup -JB (1/23/13)
+
+    // Pre-content
+
+    .pre-content { float: right; }
+
+    // --------------------------------------------------------- //
+    // Contest Components
+    // --------------------------------------------------------- //
+
+    // Buttons
+
+    .cta-button { // Global contest CTA button -JB (1/23/13)
+        background-color: $contestButton-bgBottom;
+        @include backgroundGradient(linear-gradient(top, $contestButton-bgTop, $contestButton-bgBottom));
+    }
+
+    .p-contest-entryForm .cta-button { } // Entry form cta button -JB (1/23/13)
+
+    // Instructions
+
+    .p-contest-instructions { }
+
+    // --------------------------------------------------------- //
+    // Entry Info
+    // --------------------------------------------------------- //
+
+    .p-contest-entryInfo {
+
+        .b-tab .b-tab-nav {
+
+            .b-tab-item > a { background: $contestEntry-bg; }
+
+            .b-tab-item.selected > a,
+            .b-tab-item:hover > a { background: $contestTab-selected; }
+        }
+    }
+}

@@ -1,0 +1,131 @@
+﻿// *
+// * Plugin -> Article (p-article-a) | http://www.url.com
+// * ====================================================================================================================
+
+
+// --------------------------------------------------------- //
+// Article | STATE: Base
+// --------------------------------------------------------- //
+
+%p-article-a_base {
+    @include group;
+    padding: $article-padding;
+    margin-bottom: $leading * 2;
+    position: relative;
+    // Article Header - Article title
+    .p-article-header { margin-bottom: $leading + 10px; position: relative; }
+    .p-article-title { margin-bottom: .15em; }
+    // Article By Line - Author, post date, comments
+    .p-article-byline {
+        @include hueAdjustment(color, $font-color, 20%);
+        margin-bottom: $leading;
+        .tip { border: none; }
+        .b-list { position: static; }
+        .p-article-category {  
+            border-left: 1px solid;
+            @include hueAdjustment(border-color, $content-bgColor, 10%); 
+            padding: 0 0 0 1em; 
+            margin: 0 0 0 1em;
+            > * { @include inline-block; } 
+            .u-icon-category { @extend %ir; } 
+        }
+        .p-article-comments {
+            @extend %hide;
+        }
+        .p-article-rating { margin-left: 1em; }
+    }
+
+    // Article Content
+    .p-article-content {
+        font-size: 1.1em;
+        line-height: 1.7;
+        margin-bottom: $leading;
+        img { @extend %u-image_pretty; margin-bottom: $leading; }
+        td img,
+        p img { margin-bottom: 0; }
+    }
+    // Article Footer
+    .p-article-footer { clear: both; margin-top: $leading + 10px; }
+    .p-article-meta { @include group; }
+    .p-article-jump {
+        float: right;
+        > a {
+            @include u-button-z;
+            font-weight: bold;
+            // Arrow
+            &:after { content: " \00BB"; }
+        }
+    }
+    .p-article-tags {
+        float: right;
+        max-width: 75%;           
+        // If post listing
+        .post-listing & { display: none; }
+        // If details page
+        .body-category-itemdetails & {
+            float: none; // No jump link, so take up space
+            max-width: none;
+        }
+    }
+    // Article Interaction - Social, Latest Comment
+    .p-article-interact {
+        @include group;
+        @include hueAdjustment(background, $content-bgColor, 3%);
+        border-bottom: 2px solid;
+            @include hueAdjustment(border-color, $content-bgColor, 6%);
+        padding: 10px;
+        margin: $leading / 2 0 0;
+        // Comments
+        .p-article-comments {
+            float: right;
+            a:first-of-type {
+                @include u-glyph-speechBubble;
+            }
+            a[title] { color: $font-color; > span { color: $link-color; &:hover { text-decoration: underline; } } }
+        }
+    }
+    .p-article-social {
+        @include group;
+        height: 21px;
+        line-height: 21px;
+        float: left;
+    }
+
+// Podcast Details
+// --------------------------------------------------------- //
+
+    &.p-article_audio {
+        // Duration
+        .duration { 
+            @include hueAdjustment(border-color, $content-bgColor, 10%); 
+            border-left: 1px solid; 
+            padding: 0 0 0 1em; 
+            margin: 0 0 0 1em; 
+        }
+        // Show Notes & Download  
+        .show-notes,
+        .download {
+            @include inline-block;
+            > a { @include u-button-z; }
+        }
+    }
+
+// If user is logged in
+// --------------------------------------------------------- //
+
+    .user-authenticated.body-category-itemdetails & {
+        padding-top: 40px;
+        .b-userAction {
+            position: absolute;
+            top: -40px; right: 0;
+            .b-userAction-item { > a { @include u-button-z; } }
+        }
+    }
+
+}
+
+// --------------------------------------------------------- //
+// CONSTRUCTOR
+// --------------------------------------------------------- //
+
+@mixin p-article-a { @extend %p-article-a_base; }

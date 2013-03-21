@@ -1,0 +1,51 @@
+﻿// Utility -> tooltips (u-tooltips-a)
+
+// ✎ Standard project tooltips
+
+// ⌚ Level 1.00 (02/017/12)
+
+// ☍ Components:
+//     - Null
+
+// ☆ Sub-Classes:
+//     - Null
+
+// ☯ Browser Support:
+//     - Testing Required
+
+// -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+span.tip,
+abbr.tip { 
+    border-bottom: 1px dotted;
+    border-color: lighten($font-color, 50%);
+    @if ($body-color == dark) {
+        border-color: darken($font-color, 50%);
+    } 
+    cursor: default;
+    &:hover {  
+        border-color: lighten($font-color, 30%);
+        @if ($body-color == dark) {
+            border-color: darken($font-color, 30%);
+        } 
+    } 
+}
+
+.u-tooltips-a {
+    @include borderRadius(3px);
+    background: black;
+    color: white;
+    padding: 5px;
+    width: auto; 
+    max-width: 200px;
+    border: none;
+    font-size: 10.5px;
+    font-family: sans-serif;
+    line-height: 14px; 
+    z-index: 100000006;
+	h2 {
+		 color: white;
+		 font-size: 14px;
+		 font-family: sans-serif;
+	}
+}

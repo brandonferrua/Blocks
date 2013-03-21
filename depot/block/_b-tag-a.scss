@@ -1,0 +1,45 @@
+﻿// ★★ Block -> Tag (b-tag-a) ★★
+
+// ✎ Horizontal tag list
+
+// ⌚ Level 1.00 (02/17/12)
+
+// ☍ Components:
+//     - Title (b-tag-title)
+//     - Item (b-tag-item)
+//     - Wrapper (b-tag-wrapper)
+
+// ☆ Sub-Classes:
+//     - Null
+
+// ☯ Browser Support:
+//     - Chrome
+//     - FireFox
+//     - Safari
+//     - IE9/8/7
+ 
+// -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+@mixin b-tag-a {
+    @include group;
+    > * {
+        @include inline-block; 
+        font-size: 11px; 
+        line-height: normal;
+    }
+    .b-tag-title:after { content: ':'; }
+    a:hover { color: $link-color; text-decoration: underline; }
+    // Tag index
+    .body-tag-index & {
+        margin-left: 15px;
+        > li {
+            list-style-type: disc;
+            color: $font-color;     
+            > a {
+                border-bottom: 1px solid $box-borderColor;
+                display: block;
+                padding: $leading / 2 0;
+            }
+        }
+    }
+} // END b-tag-a

@@ -1,0 +1,109 @@
+﻿//★★ Plugin -> Browser (p-browser-a) ★★
+
+// ✎ Horizontal Browser listing 
+
+// ⌚ v1.0 (12/20/11)
+
+// ▣ Block Support:
+//     - b-list-a
+//     - b-list_inlineBlock
+
+// ☍ Components:
+//     - Header (p-browser-header)
+//     - Item (p-browser-item)
+//     - Title (p-browser-title)
+
+// ☆ Sub-Classes:
+//     - Null
+
+// ☯ Browser Support:
+//     - TBD
+
+//-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ 
+
+@mixin p-browser-b {
+
+	@include group;
+
+	.p-browser-thumb { 
+		@include inline-block;
+		margin-right: 20px;
+		padding: 0;
+		margin-bottom: 8px;
+		width: 100%;
+		> a {
+			height: 120px; 
+			width: 100%; // 16:9 ratio
+			overflow: hidden;
+			@extend %u-image_pretty;
+			@extend %u-image_prettyHover;
+		}
+		img { width: 213px; }
+		.u-clip:after {   // Play Button
+            content: '';
+            width: 32px;
+            height: 32px;
+            display: block;
+            position: absolute;
+            left: 50%;
+            margin-left: -16px;
+            top: 50%;
+            margin-top: -16px;
+            background: url("#{$imageURL-core}/icons/32x32/grey/icon-play.png") no-repeat center center;
+        }
+	}
+
+    #video-streams {
+    	@include group;
+    	> li {
+	    	float: left;
+			width: 30.96667%;
+			margin: 0 0.8% 24px;
+		}
+    }
+    .p-browser-item {
+    	position: relative;
+	}
+
+	.b-list-b .b-list-item { 
+		.b-list-title { 
+			@include truncate;
+			max-width: 180px;
+			font-family: $font-family;
+			font-size: 12px;
+			font-weight: bold;
+			margin: 0; 
+		}
+	}
+
+	.b-list-b {
+		@include inline-block;
+		.b-list-item {
+			position: static;
+			@include boxShadow(none);
+			border: none;
+			padding: 0;
+			margin: 0;
+		}
+	}
+
+	.b-list-item .b-list-view {		
+		@include borderRadius(3px);
+		border: 1px solid #000;
+		background: #000;
+		background: rgba(0,0,0,.8);
+		font-size: 10px;
+		font-weight: bold;
+		position: absolute;
+		top: 10px;
+		left: 10px;
+		color: #fff;
+		z-index: 2;
+		padding: 0 10px;
+		line-height: 20px; 
+		white-space: nowrap;
+	}
+
+	.stream-time { font-size: 11px; color: $font-color; }
+
+} // END p-browser-b

@@ -1,0 +1,184 @@
+﻿// Plugin -> Comments (p-comments-b)
+//
+// ✎ Generic base plugin for forum replys
+//
+// ⌚ Level 1.00 (02/017/12)
+//
+// ☍ Components:
+//     - Null
+//
+// ☆ Sub-Classes:
+//     - Null
+//
+// ☯ Browser Support:
+//     - Chrome
+//     - FireFox
+//     - Safari
+//     - IE9/8/7
+// 
+// --------------------------------------------------------- //
+
+@mixin p-comments-b {
+    margin-bottom: $leading;
+
+    // Base 
+    .p-comment-post {
+        @include group;
+        background: $forumComment-bg;
+        border-bottom: $forumCommentBorderWidth-bottom $forumCommentBorderStyle-bottom $forumCommentBorderColor-bottom;
+        border-top: $forumCommentBorderWidth-top $forumCommentBorderStyle-top $forumCommentBorderColor-top;
+        @include boxShadow($forumComment-boxShadow);
+        padding: $forumComment-padding;
+        position: relative;
+        clear: both;
+        margin-bottom: 5px;
+        &:before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: $forumCommentUserBoxWidth - 2;
+            height: 99.6%; // For some reason, this accomdates the borders
+            display: block;
+            content: '';
+            border: 1px solid darken($content-bgColor,7%);
+            border-color: darken($content-bgColor,7%) darken($content-bgColor,12%) darken($content-bgColor,7%) darken($content-bgColor,7%);
+            @include background($color: darken($content-bgColor,4%), $gradient: linear-gradient(left, darken($content-bgColor,4%), darken($content-bgColor,2%)));
+        }
+    }
+
+    // User
+    .p-comment-user {
+        width: $forumCommentUserBoxWidth;
+        margin-top: 10px;
+        position: relative;
+        .p-comment-avatar img { max-width: $forumCommentUserBoxWidth;   }
+        .p-comment-stats { font-size: $font-sizeSmaller; }
+        .p-comment-title { width: auto; }
+
+        // Username
+
+        .p-comment-username {
+            display: block;
+            float: none;
+            margin-bottom: $leading / 2;
+            max-width: none; // Reset p-comments-a width -JB (1/31/13)
+            position: relative;
+            word-wrap: normal; 
+            
+            .user {
+                @include inline-block; // Inline-block used instead of block to keep container's width to content -JB (12/17/12)
+                color: $link-color;
+                max-width: 90%; // Prevent overflow for inline-block -JB (12/17/12)
+                overflow: hidden;
+                padding-right: 12px; // Allocate space for triangle -JB (12/17/12)
+                position: relative;
+                text-overflow: ellipsis;
+                
+                &:after {
+                    border-top-width: 5px; // Creates unique shape -JB (12/17/12)
+                    margin-top: -2px;
+                    position: absolute; // Positioned absolute due to username truncation -JB (12/17/12)
+                    right: 0; top: 50%;
+                }
+            }
+        }
+    }
+
+    // Wrapper
+    .p-comment-wrapper {
+        margin-left: $forumCommentUserBoxWidth;
+        padding: 0;
+
+        &:before { display: none; }
+    }
+
+    .p-comment-post:hover .p-comment-wrapper { @include boxShadow(none); }
+
+    // Header
+    .p-comment-header {
+        margin-bottom: $leading;
+        margin-top: -10px;
+        background: $forumComment-bgHeader;
+        overflow: hidden; // Prevent long titles -JB (1/9/13)
+        text-overflow: ellipsis;
+        padding: 3px 10px;
+        height: 26px;
+        
+        // Post #   
+        .p-comment-index {
+            @include borderRadius(0);
+            @include borderRadius-bottom-left(5px);
+
+            background: darken($commentBg,30%);
+            font-weight: bold;
+            margin: -3px -10px 0 0; // Equals .p-comment-header padding -JB 1/2/2013
+            padding: 3px;
+
+            a { color: lighten($commentBg,50%); }
+        }
+
+        // Username
+        .p-comment-username {
+            
+            > a { color: $forumComment-link-color; }
+        }
+
+        // Timestamp
+        .p-comment-postdate { 
+            font-size: $font-sizeSmaller;
+
+            abbr[title] { border-bottom: none; } 
+        }
+    }
+
+    .p-comment-username {
+        > a { color: $forumComment-link-color; }
+        .u-dropDownMenu {
+            &:before { left: 25px; }
+            &:after { left: 24px; }
+        }
+    }
+
+    // Content
+    .p-comment-content { padding: 0 10px; }
+
+    .forum-post-footer { margin-right: 10px; }
+
+    // Signature
+    .p-comment-sig {
+        display: block; // Show sigs in forums -- BF 12/13/12
+        position: relative;
+        &:before { position: absolute; top: 0; left: 0; }
+    }
+    
+    // Listing Container 
+
+    .listing-comments {
+        padding: 5px;
+        background: $forumCommentThreadBg;
+        border: 1px solid darken($forumComment-bgBorder,3%);
+    }
+    
+} // END p-comments-b
+
+.comment-preview { @include p-comments-b; }
+
+// Temporary fix for forum search due to no markup control, will be solved with placeholder selectors moving forward -JB (1/9/13)
+
+.body-forum-search .p-comments-a {
+    @include p-comments-b;
+
+    .p-comment-post { margin-bottom: $leading; }
+
+    .p-comment-header .thread-title {
+        display: block;
+        font-weight: bold;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
+.body-forum #reply {
+    body#tinymce { background: $commentBg; }
+}

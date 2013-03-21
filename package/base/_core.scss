@@ -1,0 +1,74 @@
+﻿// ************************************************************************************************************************
+// * Package -> Core                                                                                                      *
+// ************************************************************************************************************************
+
+// --------------------------------------------------------- //
+// Variables                                              
+// --------------------------------------------------------- //
+
+    @import "vars";
+
+// --------------------------------------------------------- //
+// Config                                              
+// --------------------------------------------------------- //
+    
+    // Triggers
+
+    @import "../../triggers";
+
+    // Shared (Unique to Base)
+
+    @import "../../shared";
+
+    // Grid (Unique to Base)
+
+    @import "../../depot/grid/grid-a";
+
+    // References (Unique to Base)
+
+    //@import "../../config";
+
+    // Block
+
+    $trigger_b-breadcrumb-a : true;
+    $trigger_b-definition-a : true;
+    $trigger_b-figure-a     : true;
+    $trigger_b-gallery-a    : true;
+    $trigger_b-infograph-a  : true;
+    $trigger_b-infograph-b  : true;
+    $trigger_b-list-a       : true;
+    $trigger_b-list-b       : true;
+    $trigger_b-media-a      : true;
+    $trigger_b-pagination-a : true;
+    $trigger_b-pagination-b : true;
+    $trigger_b-pagination-c : true;
+    $trigger_b-poll-a       : true;
+    $trigger_b-rating-a     : true;
+    $trigger_b-search-a     : true;
+    $trigger_b-search-b     : true;
+    $trigger_b-social-a     : true;
+    $trigger_b-tab-a        : true;
+    $trigger_b-tab-b        : true;
+    $trigger_b-table-a      : true;
+    $trigger_b-userAction-a : true;
+
+    // Plugin
+
+    $trigger_p-avatar-a        : true;
+    $trigger_p-base-a          : true;
+    $trigger_p-comments-a      : true;
+    $trigger_p-comments-b      : true;
+    $trigger_p-contest-a       : true;
+    $trigger_p-header-a        : true;
+    $trigger_p-header-b        : true;
+    $trigger_p-header-c        : true;
+    $trigger_p-login-a         : true;
+    $trigger_p-nav-a           : true;
+    $trigger_p-nav-b           : true;
+    $trigger_p-notifications-a : true;
+    $trigger_p-pm-a            : true;
+    $trigger_p-user-a          : true;
+
+    // Layout
+
+    @import "layout";

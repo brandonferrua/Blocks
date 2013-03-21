@@ -1,0 +1,87 @@
+﻿// *
+// * Block -> Breadcrumb (b-breadcrumb-a) | http://www.url.com
+// * ====================================================================================================================
+
+
+// --------------------------------------------------------- //
+// Breadcrumb | STATE: Base
+// --------------------------------------------------------- //
+
+%b-breadcrumb-a_base {
+    @include borderRadius($breadcrumb-borderRadius);
+    @include boxShadow($breadcrumb-boxShadow);
+
+    @include font(
+        $breadcrumb-fontStyle,
+        $breadcrumb-fontTransform,
+        $breadcrumb-fontWeight,
+        $breadcrumb-fontSize,
+        $breadcrumb-fontLineheight,
+        $breadcrumb-fontFamily
+    );
+
+    background: $breadcrumb-bg;
+    border: $breadcrumb-border;
+    border-width: $breadcrumb-borderWidth;
+    clear: both;
+    margin: $breadcrumb-margin;
+    padding: $breadcrumb-padding;
+    text-align: left; // .atf centers text for ads -JB (2/21/13)
+
+
+    // --------------------------------------------------------- //
+    // Item
+    // --------------------------------------------------------- //
+
+    .b-breadcrumb-item {
+        @include inline-block;
+        @include truncate;
+
+        background: $breadcrumbItem-bg;
+        border: $breadcrumbItem-border;
+        border-width: $breadcrumbItem-borderWidth;
+        margin: $breadcrumbItem-margin;
+        max-width: 275px; // Prevent individual long title -JB (2/21/13)
+        padding: $breadcrumbItem-padding;
+
+        > a {
+            color: $breadcrumbItem-color;
+
+            &:hover { color: $breadcrumbItem-colorHover; } 
+        }
+
+        // Separator
+
+        & + .b-breadcrumb-item {
+            
+            &:before { content: $breadcrumbItem-seperator; padding: $breadcrumbItem-seperator-padding; }
+        }
+
+        // Home Item
+
+        &.home { 
+            @include borderRadius-top-left($breadcrumbHomeItem-borderRadius);
+
+            background: $breadcrumbHomeItem-bg; 
+            padding: $breadcrumbHomeItem-padding; 
+        }
+
+        // Drop Down (Unique to Database Package)
+
+        @if($package-db) {
+
+            & a.section { // Dropdowns via JS
+                @include triangle($direction: "down", $location: ":after", $color: $breadcrumbItem-color);
+
+                &:after { margin-left: 6px; }
+            }
+        }
+    }
+
+}
+
+// --------------------------------------------------------- //
+// CONSTRUCTOR
+// --------------------------------------------------------- //
+
+@mixin b-breadcrumb-a { @extend %b-breadcrumb-a_base; }

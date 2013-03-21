@@ -1,0 +1,125 @@
+﻿// ************************************************************************************************************************
+// * Plugin -> Base (p-base-a)                                                                                            *
+// *                                                                                                                      *
+// * Sub-Classes:                                                                                                         *
+// *    - Null                                                                                                            *
+// ************************************************************************************************************************
+
+// --------------------------------------------------------- //
+// 1.) Mixin                                                   
+// --------------------------------------------------------- //
+
+@mixin p-base-a {
+
+    @extend %p-base_wrapper;
+
+    // Header
+    .p-base-header { @extend %p-base_header; }
+
+    // Content
+    .p-base-content { @extend %p-base_content; }
+
+    // Footer
+    .p-base-footer { @extend %p-base_footer; }
+
+    // Empty
+    .p-base-empty { @extend %p-base_empty; }
+
+    // Commmnts
+    .comments { @include u-glyph-speechBubble; }
+
+    // ATF Layout
+    .atf & {
+        float: left;
+        width: 31.983%;
+        margin-left: 2.04%;
+        text-align: left;
+        margin-top: $leading;
+        margin-bottom: $leading;
+        &.p-base_first { margin-left: 0 !important; }
+        .p-base-header { 
+            margin-bottom: 0; 
+        }
+        .b-list .b-list-item { 
+            padding: 6px 10px;
+            margin: 0; 
+        }
+        .b-list-topic { display: none; }
+        .p-base-footer {
+            margin: 0;
+            padding: 5px;
+        }
+    }
+    // If ads are hidden, expand full width
+    .hide-ads .atf & {
+        width: 48.979%; 
+    }
+
+    // Filters -- Copper Specific, needs to be moved -- BF 3/8/13
+    .filters {
+        @include custom-checkbox;
+        margin-bottom: $leading;
+
+        // Search by Text Input
+        .text-input { float: left; margin-right: $col-gutter; width: 18%; }
+
+        // Title
+        .title { position: absolute; left: -9999px; } // Base styles for single category filter, override this style on project level for multiple category filters with titles
+
+        // Filter Options
+        .filter {
+            @include inline-block;
+            padding: 0;
+            & { margin-right: $leading / 2; }
+        } 
+    }
+
+    
+} // END p-base-a
+
+// Placeholders
+// ------------------------------------------------------------------------------------------------------ //
+
+    %p-base_wrapper {
+        @include group;
+        @include borderRadius($base-borderRadius);
+        background: $base-bg;
+        border: $base-border;
+        border-color: $base-borderColor;
+        margin-bottom: $leading;
+        padding: 0;
+        position: relative;
+    }
+
+    %p-base_header {
+        margin-bottom: $leading / 2;
+        padding: $base-headerPadding;
+        .title { color: $base-headerColor; margin: 0; }
+    }
+
+    %p-base_content {
+        @include group;
+        padding: $box-padding;
+        .b-list-title { font-size: $font-size + 1; margin-bottom: .2em; }
+        .b-list-item { 
+            line-height: normal; 
+            font-size: $font-size - 2; 
+            color: lighten($font-color,20%);
+            @if ($body-color == dark) {
+                color: darken($font-color,20%);
+            }
+        }
+        img { max-width: 100%; }
+    }
+
+    %p-base_footer {
+        margin-top: 10px; 
+        text-align: right; 
+        a { @include u-button-z; }
+    }
+
+    %p-base_empty {
+        background: $base-bg;
+         margin: $leading; 
+         text-align: center;
+    }

@@ -1,0 +1,63 @@
+// â˜…â˜… Plugin -> Header (p-header-c) â˜…â˜…
+//
+// âœŽ Skinny Header containing left logo and right search with nav below
+//
+// âŒš Level 1.00 (09/27/12)
+//
+// â˜ Components:
+//     - Null
+//
+// â˜† Sub-Classes:
+//     - Null
+//
+// â˜¯ Browser Support:
+//     - Chrome
+//     - FireFox
+//     - Safari
+//     - IE9/8/7
+// 
+// ------------------------------------------------------------------------------------------
+
+// Mixin
+// ------------------------------------------------------------------------------------------
+
+@mixin p-header-c {
+
+    @include group;
+    @include boxShadow(0 1px 2px rgba(0,0,0,.3));
+    margin: $headerMain-margin;
+    position: relative;
+    background: $headerBg;
+    // Container
+    .p-header-contain {
+        @include group;
+        @extend %wrapper_content;
+        margin: 0 auto;
+        padding: 0 10px;
+        position: relative;
+    }
+    .p-header-main {
+        z-index: 2;
+    }
+    // Logo
+    h1 { margin: 0; } // Base reset
+    .logo {
+        > a {
+            background: $headerLogo;
+            display: block;
+            float: left;
+            height: $headerLogo-height;
+            text-indent: -9999px;
+            width: $headerLogo-width;
+            background-size: $headerLogo-width $headerLogo-height;
+        }
+    }
+    // Search
+    .b-search {
+        float: right;
+        margin: 0;
+        margin-top: 9px;
+        form { margin: 0; }
+    }
+} // END p-header-c
+

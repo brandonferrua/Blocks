@@ -1,0 +1,358 @@
+﻿// *
+// * Plugin -> Profiles (p-user-a)
+// * ====================================================================================================================
+
+
+// --------------------------------------------------------- //
+// BASE: Profiles | STATE: Base
+// --------------------------------------------------------- //
+
+%p-user_base {
+
+// Profile Header
+// ------------------------------------------------------------------------------------------------------ //
+
+    .p-user-info {
+        @include group;
+        padding: 10px;
+        min-height: 140px;
+        .b-userAction-a { float: right; }
+        .p-user-social-links { 
+            clear: both;
+            margin-left: 120px;
+        } 
+    }
+
+// Member Details
+// ------------------------------------------------------------------------------------------------------ //
+
+    .p-user-details {
+        float: left;
+        // Detail Items
+        > li { margin-left: 120px; }
+        // Avatar
+        .user-avatar {
+            float: left;
+            margin-left: 0;
+            max-width: 100px;
+            img { max-width: 100px; @include borderRadius(5px); }
+        }
+        // Username
+        .username {
+            font-size: 26px;
+            font-weight: bold;
+            line-height: 28px;
+            margin-bottom: 6px;
+        }
+        // User Group
+        .role { font-weight: bold; }
+
+        .social-links { padding-top: 2px; }
+    }
+
+// Member Stats
+// ------------------------------------------------------------------------------------------------------ //
+
+    .p-user-stats {
+        @include boxShadow(0 1px 1px rgba(0, 0, 0, .08), inset 0 1px 0 rgba(255, 255, 255, .8));
+        @if ($body-color == dark) {
+            @include boxShadow(0 1px 1px rgba(0, 0, 0, .08), inset 0 1px 0 rgba(255, 255, 255, .1));
+        }
+        @include borderRadius(5px);
+        @include background($color: darken($content-bgColor,4%), $gradient: linear-gradient(top, darken($content-bgColor,4%),darken($content-bgColor,8%)));
+        @if ($body-color == dark) {
+            @include background($color: lighten($content-bgColor,8%), $gradient: linear-gradient(top, lighten($content-bgColor,12%),lighten($content-bgColor,8%)));
+        }
+        border: 1px solid darken($content-bgColor,20%);
+        float: right;
+        clear: right;
+        margin-top: 10px;
+        padding: 3px 0;
+        position: relative;
+        top: 17px;
+        > li {
+            @include inline-block;
+            border-left: 1px solid darken($content-bgColor,20%);
+            padding: 8px;
+            font-weight: bold;
+            &:first-child { @include boxShadow(none); border-left-color: transparent; }
+        }
+    }
+
+// Profile Navigation
+// ------------------------------------------------------------------------------------------------------ //
+
+    .p-user-interaction {
+        @include group;
+        border-top: 1px solid;
+        border-left: 1px solid;
+        @include hueAdjustment(border-color, $content-bgColor, 15%);
+        @include hueAdjustment(background, $content-bgColor, 3%);
+
+        .p-nav {
+            width: 33%;
+            float: left;
+            .b-list-item { 
+                border-bottom: 1px solid;
+                &:first-child { border-top: none; }
+                @include hueAdjustment(border-color, $content-bgColor, 15%);
+                position: relative;
+                > a {
+                    @include boxShadow(inset -4px 0px 8px -7px rgba(0, 0, 0, 0.5));
+                    @include borderRadius(0);
+                    @include background($color: darken($content-bgColor,4%), $gradient: linear-gradient(top, darken($content-bgColor,1%),darken($content-bgColor,8%)));
+                    @if ($body-color == dark) {
+                        @include background($color: lighten($content-bgColor,4%), $gradient: linear-gradient(top, lighten($content-bgColor,8%),lighten($content-bgColor,1%)));
+                    }
+                    @include triangle($direction: "right", $location: ":after", $color: $font-color);
+                    color: $font-color;
+                    display: block;
+                    height: 36px;
+                    line-height: 36px;
+                    padding: 0;
+                    position: relative;
+                    text-align: center;
+                    border: none;
+                    &:hover {
+                        @include boxShadow(inset -4px 0px 8px -7px rgba(0, 0, 0, 0.5), 1px 1px 3px rgba(0, 0, 0, .08));
+                        z-index: 4;
+                        &:after { right: 13px; }
+                    }
+                    &:after {
+                        position: absolute;
+                        right: 15px;
+                        top: 16px;
+                    }
+                }
+
+                &.selected {
+                    a {
+                        background: $tertiaryColor;
+                        color: $font-colorTertiary;
+                        @include boxShadow(none);
+                        &:hover { 
+                            @include boxShadow(none); 
+                        }
+                        &:after { display: none; }
+                    }
+                    &:after {
+                        border-width: 6px;
+                        border-style: solid;
+                        border-color: transparent $content-bgColor transparent transparent;
+                        content:'';
+                        position: absolute;
+                        right: -1px; top: 9px;
+                        z-index: 9;
+                    }
+                }
+            }
+
+            // Streams
+            #video-streams li {
+                margin-left: 1%;
+                margin-right: 1%;
+                border-bottom: none !important;
+                padding: 0;
+            }
+        }
+
+// Profile Content
+// ------------------------------------------------------------------------------------------------------ //
+        .p-user-content {
+            width: 67.002%;
+            min-height: 460px;
+            float: left;
+            padding: 20px;
+            position: relative;
+            z-index: 5;
+            background: $content-bgColor;
+            border-left: 1px solid;
+            @include hueAdjustment(border-color, $content-bgColor, 15%);
+            > header.h2 h2 { @extend %hide; }
+            label { font-weight: bold; display: inline; }
+            input[type=text],
+            input[type=date],
+            input[type=password],
+            select { width: 300px; display: block; clear: both; margin-top: 4px; }
+            .chzn-container { display: block; }
+            #field-gender { margin-left: 5px; label { font-weight: normal; } }
+            h3 { font-family: $font-family; }
+            blockquote { h4 { margin-bottom: $leading / 2; } }
+        }
+
+    }
+
+    // --------------------------------------------------------- //
+    // Profile Latest Posts
+    // --------------------------------------------------------- //
+
+    .listing  {
+        .latest-post-item {
+            padding-bottom: $leading;
+            margin-bottom: $leading;
+            border-bottom: 1px solid $box-borderColor;
+            .post-author-avatar { float: left; margin-top: 7px; .avatar a:before { @include borderRadius(2px); @include boxShadow(rgba(0, 0, 0, 0.35) 0 1px 3px inset, rgba(255, 255, 255, 0.15) 0 1px 0); } img { @include borderRadius(2px); } }
+            .post-date { float: right; margin-left: 20px; color: $font-color; font-size: 11px; font-style: italic; abbr { border: none; } &:hover { color: $font-color; text-decoration: underline; abbr { border: none; } } }
+            .post-activity { 
+                margin-left: 60px; 
+                a { font-weight: bold; color: $link-color; text-decoration: underline; 
+                    &:hover { color: $link-color; text-decoration: underline; } 
+                } 
+            }
+            .post-author a { font-weight: bold; color: $font-color; text-decoration: none; &:hover { color: $font-color; text-decoration: underline; } }
+            .post-content {
+                position: relative;
+                margin-bottom: 0;
+                padding: 10px 10px 10px 40px;
+                margin-left: 60px;
+                &:not(:empty) {
+                    &:before {
+                        content: '';
+                        width: 12px;
+                        height: 12px;
+                        background: url("#{$imageURL-core}/icons/8x8/#{$icon-color}/icon-quote-right.png") no-repeat 0 0;
+                        position: absolute;
+                        top: 10px;
+                        left: 20px;    
+                    }
+                }
+            }
+            .post-location { 
+                clear: both;
+                display: block;
+                text-align: right;
+                font-size: 11px;
+                color: $font-color;
+                font-style: italic;
+                font-weight: bold;
+                a { font-weight: normal; }
+            }
+        }
+        .body-user-details &.no-results { display: none; }
+    }
+
+    // --------------------------------------------------------- //
+    // Followers
+    // --------------------------------------------------------- //
+
+    .user-list-item {
+        float: left;
+        margin: 0 10px 10px 0;
+        padding: 0;
+        width: 64px;
+        height: 85px;
+        border: none;
+        .avatar { height: 64px; }
+        a { display: block; }
+        > span { 
+            @include truncate; 
+            width: 64px; 
+            display: block; 
+            font-size: 11px; 
+            text-align: center;
+        }
+    }
+
+    // --------------------------------------------------------- //
+    // Notifications
+    // --------------------------------------------------------- //
+
+    .s_myNotifications {
+        // Headers
+        h3 { font-size: 16px; margin-bottom: 10px; }
+
+        // Sections
+        .p-setting-section { margin-top: 20px; padding-top: 20px; border-top: 1px solid $box-borderColor; }
+
+        // Delivery Options
+        .day-selection {
+            margin-bottom: 5px;
+            li { @include inline-block; }
+        }
+        .time-selection {
+            input.time { width: 100px; @include inline-block; }
+            select,
+            .chzn-container { @include inline-block; }
+        }
+        .p-all-notifications-checkbox { float: right; margin-top: 34px; }
+        .setting {
+            padding: 3px 0;
+            input[type=checkbox] { float: right; }
+        }
+        // Save Preferences
+        .form-actions { margin-top: 20px; }
+    }
+
+}
+
+%p-user_profile {
+    .p-user-stats { top: 0; }
+    .listing-container > .listing-header { @extend %hide; }
+}
+
+%p-user_streams {
+    @extend %p-user_profile;
+    .p-streams-a {
+        background: none;
+        padding: 0;
+        margin: 0;
+        .p-streams-header { float: none; width: 100%; margin: 0; }
+        .p-streams-content { float: none; width: 100%; margin: 0; }
+    }
+}
+
+// --------------------------------------------------------- //
+// Full Member Listing
+// --------------------------------------------------------- //
+
+%p-user_memberListing {
+
+    .h2 { margin-bottom: $leading; }
+
+    .listing-filters { @include borderRadius($border-radius); background: $box-bg; padding: $box-padding; }
+    #form-field-filter-user-sort { float: right; }
+    #form-field-filter-username { margin-right: $leading / 2; }
+    .form-footer { display: block; margin-top: $leading / 2; }
+    input[type="checkbox"] { vertical-align: middle; margin: 0; }
+    .form-field-boolean-field {
+      input[type="checkbox"] { margin: 3px 8px 0 0; }
+    }
+
+    .b-media {
+        padding: $leading ($leading / 2);
+        position: relative;
+
+        & + .b-media-a { border-top: $box-border; }
+        &:nth-child(even) { background: $box-bg; color: $box-fontColor; }
+        .avatar {
+          img { min-width: 1px; } // Fix for images rendering with 0 width on member listing (JW - 1/21/2013)
+        }
+    }
+
+    .username { font-size: $font-sizeLarger; }
+
+    .joined,
+    .last-active {
+        position: absolute;
+        bottom: $leading; right: $leading / 2;
+    }
+
+    .joined { bottom: $leading * 2; }
+}
+
+// --------------------------------------------------------- //
+// Mixin
+// --------------------------------------------------------- //
+
+@mixin p-user-a {
+    
+    &.s_myAccount,
+    &.s_myProfile,
+    &.s_myStreams { @extend %p-user_base; }
+
+    &.s_myProfile { @extend %p-user_profile; }
+    &.s_myStreams { @extend %p-user_streams; }
+
+    &.full-member-listing { @extend %p-user_memberListing; }
+
+} 

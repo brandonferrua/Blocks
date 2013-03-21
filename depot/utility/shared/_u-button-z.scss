@@ -1,0 +1,80 @@
+﻿// ★★ Utility -> Button (u-button-z) ★★
+
+// ✎ UNIQUE - Standard buttons
+
+// ⌚ Level 1.00 (04/03/12)
+
+// ☍ Components:
+//     - Null
+
+// ☆ Sub-Classes:
+//     - Null
+
+// ☯ Browser Support:
+//     - Testing Required
+ 
+// -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+
+// -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+
+// ★★ Mixin
+
+@mixin u-button-z(
+    $bg-top      : $button-bgTop,
+    $bg-bottom   : $button-bgBottom,
+    $color       : $button-fontColor,
+    $colorHover  : $button-fontColorHover,
+    $padding     : $button-padding,
+    $text-shadow : $button-fontTextShadow,
+    $font-family : $button-fontFamily
+) {
+
+    // Base
+
+    border-style: solid;
+    border-width: 1px;
+    border-color: #111; // Fallback
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    @include borderRadius($button-borderRadius);
+    background-color: $bg-bottom;
+    @include backgroundGradient(linear-gradient(top, $bg-top, $bg-bottom));
+    background-repeat: repeat-x;
+    @include boxShadow($button-boxShadow);
+    color: $color;
+    @include inline-block;
+    line-height: $leading;
+    padding: $padding;
+    text-shadow: $text-shadow;
+    font-family: $font-family;
+    font-size: $button-fontSize;
+    font-weight: $button-fontWeight;
+    @include transition(background-position, .1s, linear);
+
+    // States
+
+    &:hover { background-position: 0 -15px; color: $colorHover; }
+    &:visited { color: $color; }
+    &:active { background-image: none; @include boxShadow(inset 0px 2px 4px rgba(0, 0, 0, 0.10), inset 0px 1px 2px rgba(0,0,0,.05)); }
+
+} // END u-button-z
+
+// --------------------------------------------------------- //
+// Button Types
+// --------------------------------------------------------- //
+
+.u-button {
+    &.u-button-link { @extend %u-button-link; }
+}
+%u-button-link {
+    @include elementGoBOOM;
+    @include inline-block;
+    color: $link-color;
+    margin: 0 1em;
+    &:hover,
+    &.active { 
+        @include boxShadow(none);
+        @include borderRadius(0);
+        text-decoration: underline; 
+        color: $link-color; 
+    }
+}

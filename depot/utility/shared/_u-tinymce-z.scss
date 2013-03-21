@@ -1,0 +1,69 @@
+﻿// Utility -> Vanity
+
+// ✎ Standard project vanities
+
+// ⌚ Level 1.00 (06-06-12)
+
+// ☍ Components:
+//     - Null
+
+// ☆ Sub-Classes:
+//     - Null
+
+// ☯ Browser Support:
+//     - Testing Required
+
+// -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+.mceContentBody {
+    height: auto;
+    background: $tinyMCE-bg;
+    color: $font-color;
+    height: auto;
+
+    td { color: $font-color; }
+}
+
+#tinymce .spoiler
+{
+    &:before { display: none; }
+    > p:last-child { margin-bottom: 0; }
+}
+
+.mceToolbar a.mce_spoiler > span.mceIcon
+{
+    background: url("#{$imageURL-core}/ui/exclamation.png") no-repeat center center;   
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+
+a.mce_videoembed .mceIcon 
+{
+    background:url("#{$imageURL-core}/ui/youtube_icon.png") no-repeat center center;
+}
+
+.markup-editor textarea {
+    @include borderRadius-top(0);
+
+    background: $tinyMCE-bg;
+    border: 1px solid #ddd;
+    color: $font-color;
+    font-family: courier;
+}
+
+.mceStatusbar
+{
+    position: relative;
+}
+.mceStatusbar a.mceResize 
+{
+    position: absolute;
+    background: url("#{$imageURL-core}/ui/grippie.png") no-repeat center center !important;
+    cursor: s-resize !important;
+    height: 7px !important;
+    width: 100% !important;
+    margin-top: 5px;
+    left: 0 !important;    
+}

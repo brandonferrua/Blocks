@@ -1,0 +1,12 @@
+// ************************************************************************************************************************
+// * Utility -> Frame (u-frame)                                                                                           *
+// ************************************************************************************************************************
+
+.u-frame-a {
+    background: $content-bgColor;
+    @include boxShadow($frame-boxShadow);
+    border: $frame-border;
+    border-color: $frame-borderColor;
+    display: block;
+    overflow: hidden;
+}

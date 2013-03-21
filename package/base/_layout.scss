@@ -1,0 +1,110 @@
+﻿// ************************************************************************************************************************
+// Package - News & Forum - Layout                                                                                        *
+// ************************************************************************************************************************
+
+// --------------------------------------------------------- //
+// 1.) Window                                                  
+// --------------------------------------------------------- //
+
+    body { @include background($shorthand: $body-bg, $fallback: $body-bgFallback); }
+
+// --------------------------------------------------------- //
+// 2.) Site Wrapper                                            
+// --------------------------------------------------------- //
+
+    #site {
+        background: $wrapper-bg;
+        padding: $wrapper-padding;
+    }
+
+    #site-main {
+        @extend %wrapper;
+        background: $site-bg;
+        padding: $site-padding;
+    }
+
+// --------------------------------------------------------- //
+// 3.) Columns                                                 
+// --------------------------------------------------------- //
+
+    // Base
+
+    .primary-content { @include col(8); }
+    .secondary-content { @include col(4); }
+
+    // Primary + Secondary
+
+    .primary-content:first-child { margin-left: 0; }
+
+    .primary-content + .secondary-content { padding: $secondaryContent-padding; }
+
+    // Secondary + Primary
+
+    .secondary-content:first-child { margin-left: 0; }
+
+    // Single
+
+    .single-column .primary-content { @include col(12); }
+
+// --------------------------------------------------------- //
+// 4.) Content                                                 
+// --------------------------------------------------------- //
+
+    // #content, .atf {
+    //     background: $content-bg;
+    //     @include multipleBg-border($borderBg-path,$borderBg-color,$borderBg-width,$borderBg-style);
+        
+    //     .hide-ads & { border-bottom-width: 0; border-top-width: 0; }
+    // }
+
+    #content {
+        @include group;
+        @include borderRadius($content-borderRadius);
+        background: $content-bg;
+        padding: $content-padding;
+        margin-bottom: 20px;
+        .single-column & { background: $content-bgSingle; @include multipleBg-border($borderBg-path,$borderBg-color,$borderBg-width,$borderBg-style); }
+    }
+
+    .atf {
+        background: $atf-bg;
+        border-bottom-width: 0;
+        border-top-width: 0;
+        margin: $atf-margin $atf-margin $atf-marginBottom;
+    }
+
+// For Layout
+// -------------------------------------------------------------------------------------------------------------------
+// %wrapper and %wrapper_content can be extended onto elements for a preferred layout
+//      
+// -------------------------------------------------------------------------------------------------------------------
+// Use: 
+//      %wrapper, by default will provide you with a contained 1000px width site
+//
+//      %wrapper_content, by default will provide you the ability to have a full width design with just the content areas 
+//      contained to 1000px width
+//
+//      %wrapper_core is extended by default into both placeholders
+//
+// --------------------------------------------------------------------------------- //
+
+    %wrapper_core {
+        @include group;
+        margin: 0 auto;
+        display: block;
+        position: relative;
+    }
+
+    %wrapper {
+        @extend %wrapper_core;
+        width: $site-width;
+        max-width: $site-maxWidth;
+        min-width: $site-minWidth;    
+    }
+
+    %wrapper_content {
+        @extend %wrapper_core;
+        width: $content-width;
+        max-width: $content-maxWidth;
+        min-width: $content-minWidth;
+    }

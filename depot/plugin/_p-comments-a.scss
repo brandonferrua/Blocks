@@ -1,0 +1,411 @@
+﻿// Plugin -> Comments (p-comments-a)
+//
+// ✎ Generic base plugin for comments and forum replys
+//
+// ⌚ Level 1.00 (02/017/12)
+//
+// ☍ Components:
+//     - Null
+//
+// ☆ Sub-Classes:
+//     - Null
+//
+// ☯ Browser Support:
+//     - Chrome
+//     - FireFox
+//     - Safari
+//     - IE9/8/7
+// 
+// --------------------------------------------------------- //
+
+// Mixin
+// --------------------------------------------------------- //
+
+@mixin p-comments-a {
+
+    margin-bottom: $leading;
+    text-align: left;
+    > header h2 { @extend %hide; } // Hiding due to duplication of 'Comments' text -- BF -- 1/16/13
+
+    // Base 
+
+    .p-comment-post {     
+        @include group;
+        position: relative;
+        margin-bottom: .5em;
+
+        &.comment-spam {
+            @extend %p-comment_moderated;
+            .p-comment-wrapper {  
+                background: #DE0000 url("#{$imageURL-core}/ui/ui-spam-bg.png") no-repeat center center;
+                .p-comment-index { background: darken(#DE0000,5%); }
+                &:before { border-right-color: #DE0000; }
+            }
+        }
+
+        &.comment-deleted,  
+        &.comment-deleted-with-note {
+            @extend %p-comment_moderated;
+            .p-comment-wrapper {
+                background:#333 url("#{$imageURL-core}/ui/ui-deleted-bg.png") no-repeat center center;
+                .p-comment-index { background: darken(#333,5%) }
+                &:before { border-right-color: #333; }
+            }
+        }
+    }
+
+
+    // User
+
+    .p-comment-user {
+        float: left;
+        margin-left: 0;
+        text-align: center;
+
+        .p-comment-micro-author { display: none; } // This is used solely for SEO, so it is hidden.
+        .p-comment-avatar img { max-width: $commentUserBoxWidth - 20px; @include borderRadius(3px); }
+        .p-comment-stats { font-size: $font-sizeSmaller; }
+        .p-comment-title { 
+            font-size: 10px; 
+            font-weight: bold; 
+            display: block;
+            line-height: 1.5;
+            width: $commentUserBoxWidth;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: $commentUserTitle-color;
+        }
+    }
+
+    // Container 
+
+    .p-comment-wrapper {
+        margin-left: $commentUserBoxWidth + 10px;
+        @include group;
+        @include borderRadius(5px);
+        @include triangle("left", $location: ":before", $size: 10px, $color: $commentBg);
+        background: $commentBg;
+        padding: 15px;
+        position: relative;
+        &:before { position: absolute; left: -10px; top: 22px; }
+    }
+    .comment-allows-rating .p-comment-wrapper {
+        margin-left: $commentUserBoxWidth + 55px;
+    }
+
+    // Header
+
+    .p-comment-header {
+        margin-bottom: 10px;
+        height: 20px;
+        line-height: 20px;
+        @include group;
+
+        .p-comment-username:hover .user-actions-forum-post-author-menu { left: 0; } 
+    }
+        // Post #
+            
+        .p-comment-index {
+            @include borderRadius-bottom-left(5px);
+            @include borderRadius-top-right(5px);
+
+            background: darken($commentBg,5%);
+            float: right;
+            font-weight: bold;
+            margin: -15px -15px 0 0; // Equals .pcomment-wrapper padding amount -JB 1/2/13
+            padding: 8px;
+            
+            a { color: $commentIndex-color; }
+        }
+
+        // Username
+
+        .p-comment-username {
+            float: left;
+            font-weight: bold;
+            position: relative;
+            max-width: 45%; // Prevent long username abuse -JB (1/31/13)
+            word-wrap: break-word;
+            
+            > a { 
+                color: $link-color; 
+                //@include triangle("down",$location: ":after", $size: 8px, $spacing: 10px); 
+                span:after { border-top-width: 5px; border-top-color: $link-color;  }
+            }
+        }
+
+        // Timestamp
+
+        .p-comment-postdate { 
+            font-size: $font-sizeSmaller;
+            margin-right: 20px;
+            text-align: right;
+            float: right;
+            display: block;
+
+            abbr[title] { border-bottom: none; } 
+        }
+
+        // Patch
+
+        .p-comment-posted-in-patch {
+            float: right;
+            display: block;
+            text-align: right;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+    // Content
+
+    .p-comment-content {
+        .p-comment-body {
+            iframe, object { max-width: 100%; max-height: 600px; display: block; margin-bottom: $leading; }
+            img { max-width: 100%; }
+        }
+        .public-message { font-style: italic; font-size: 11px; color: darken($font-color, 10%); margin: 5px 0; }
+    }
+
+    // Signature
+
+    .p-comment-sig {
+        display: none;
+        font-size: $font-sizeSmaller;
+        color: $commentSigColor;
+        margin-top: 4px;
+        overflow: hidden;
+        padding: 4px;
+        &:before {
+            content: '';
+            display: block;
+            height: 1px;
+            width: 50%;
+            background-color: darken($commentBg,10%);
+        }   
+        p:only-of-type { margin-bottom: 0; }
+        img { vertical-align: text-bottom; }
+    }
+
+    .p-comment-edited { color: $font-color; font-size: $font-sizeSmaller; font-style: italic; }
+
+    // Actions
+
+    .p-comment-actions { 
+
+        .p-comment-actionsAdmin {
+            float: right;
+            position: relative;
+            @include u-dropDown-z;
+            > ul { top: 23px; }
+            > .label {
+                @include inline-block;
+                margin-right: 20px;
+                font-size: 11px;
+                font-weight: bold;
+                @include background($color: darken($commentBg,10%), $gradient: linear-gradient(top, $adminBtn-bgTop, $adminBtn-bgBottom));
+                @include boxShadow($adminBtn-boxShadow);
+                @include borderRadius(3px);
+                border: 1px solid darken($commentBg,15%);
+                border-color: $adminBtn-borderColor;
+                position: relative;
+                top: 2px;
+                padding: 0 10px;
+                height: 24px;
+                line-height: 22px;
+                @include triangle("down", $location: "after", $size: 4px, $color: $font-color);
+                &:after {
+                    border-right: 4px solid transparent;
+                    border-left: 4px solid transparent;
+                    margin-left: 4px;
+                    vertical-align: middle;
+                }
+                &:hover {
+                    cursor: pointer;
+                    @include boxShadow($adminBtn-boxShadow-hover);
+                }
+                .user-anonymous & { display: none; }
+            }
+            a:before {
+                background-image: $adminBtn-actionIcons;
+                content: "";
+                display: inline-block;
+                height: 12px;
+                margin-right: 4px;
+                vertical-align: middle;
+                width: 12px;
+            }
+
+            a:hover:before { background-image: $adminBtn-actionIcons-hover; }
+
+            .warn a:before { background-position: -42px 0; }
+            .spam a:before { background-position: -28px -28px; }
+            .edit-attachments a:before { background-position: 0 -14px; }
+            .add-note a:before { background-position: 0 0; }
+            .delete a:before { background-position: -14px 0; }
+        }
+
+        .p-comment-actionsUser {
+            float: right;
+        }
+
+        .user-actions {
+            @include group;
+            float: none;
+            margin: 0;
+            > li {
+                @include inline-block;
+                a {
+                    @include elementGoBOOM;
+                    color: $font-color;
+                    font-size: 11px;
+                    &:hover { color: $link-color; }
+                    &:active { @include boxShadow(none); color: $link-color; }
+                    &:visited { color: $font-color; }
+                }
+            }
+        }
+    }
+
+    .p-comment-post:hover .p-comment-actions ul li { opacity: 1; }
+    .p-comment-post:hover .p-comment-wrapper { @include boxShadow(0 1px 1px 0px rgba(0, 0, 0, 0.1)); }
+    .p-comment-post[data-depth] { padding-left: $commentPadding + 15px; } //border-left: 2px solid $commentThreadBg-color; }
+    .p-comment-post[data-depth="1"] { margin-left: 40px; }
+    .p-comment-post[data-depth="2"] { margin-left: 80px; }
+
+    // Reply To Form
+    .p-comment-reply-form {
+        @include borderRadius(5px);
+        padding: 10px;
+        margin: 10px 0 10px 30px;
+        background: $box-bg;
+        position: relative;
+        form { margin: 0; }
+        .help-block { @extend %hide; }
+        #form-field-subject {  @extend %p-comment_subject; }
+        &:before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: url("#{$imageURL-core}/icons/8x8/#{$icon-color}/icon-replyTo.png");
+            position: absolute;
+            left: -14px;
+            top: 0;
+        }
+    }
+
+    .u-typography-format { word-wrap: break-word; } // For lines of text without spaces that extend beyond the container 
+    
+    .forum-post-footer {
+        @include group;
+        clear: both;
+    }
+    .listing-filters-wrapper {
+        text-align: right;
+        @include background($color: $commentBg, $gradient: linear-gradient(top, $commentBg, darken($commentBg,5%)));
+        padding: 5px 10px;
+        border: 1px solid darken($commentBg,5%);
+        @include borderRadius(3px);
+        margin-bottom: 10px;
+        div,
+        label,
+        select { @include inline-block; margin: 0; }
+        form { margin: 0; }
+        form > div { margin-left: 10px; }
+    }
+
+    .b-ratingForm-a {
+        float: left;
+        position: relative;
+        z-index: 4;
+        margin-right: 15px;
+        > form {
+            margin: 0;
+        }
+        .rating-up,
+        .rating-down,
+        .rating-sum {
+            > input {
+                width: 40px; 
+                height: 25px;
+                display: block;
+                padding: 0;
+                margin: 0;
+                background: $icon-ua-commentRating-sprite;
+                opacity: .6;
+                margin: auto;
+                &:hover { cursor: pointer; opacity: 1; }
+            }
+            &.rating-disabled { opacity: .2; cursor: default; }
+        }
+        .rating-up {
+            > input { background-position: 0 0; }
+            &.ratingSelected > input { background-position: -42px 0; opacity: 1; }
+        }
+        .rating-down {
+            > input { background-position: 0 -29px; }
+            &.ratingSelected > input { background-position: -42px -27px; opacity: 1; }
+        }
+        .rating-sum {
+            font-weight: bold;
+            text-align: center;
+            font-size: 18px;
+            padding: 5px;
+            border: none;
+            &:hover { cursor: pointer; }
+            > .rating-sum { padding: 0; display: block; }
+            &.rating-average-ratingNegative { color: red; border-top: 1px solid $box-borderColor; }
+            &.rating-average-ratingPositive { color: green; }
+        }
+    }
+
+} // END p-comments-a
+
+.comment-preview { @include p-comments-a; }
+
+// Reply Form
+// --------------------------------------------------------- //
+
+#reply {
+    margin-bottom: $leading * 2;
+    > header h2 { font-size: $header-size; font-family: $font-family; margin-bottom: 0; }
+    .help-block { 
+        display: block; 
+        font-size: 11px;
+        line-height: 15px;
+        margin-bottom: $leading; 
+    }
+    #form-field-subject {
+        @extend %p-comment_subject;
+    } 
+}
+%p-comment_subject {
+    > label {
+        @include inline-block;
+        width: 5em;
+        &:after { content: ': ' }
+    }
+    > input {
+        @include inline-block;
+        width: 180px;
+    }    
+}
+
+
+// Moderated Comments
+// --------------------------------------------------------- //
+
+%p-comment_moderated {
+    opacity: .2;
+    @include transition(opacity, .3s, linear);
+    &:hover { opacity: 1; }
+    .p-comment-wrapper {  
+        .p-comment-content { color: #fff; }
+        a { color: #fff; &:hover { color: #fff; } }
+        .p-comment-index { @include borderRadius(5px); }
+    }
+    .p-comment-actionsUser > .user-actions > .user-action .u-icon { background-image: url("#{$imageURL-core}/icons/12x12/white/user-action-sprite.png"); }
+    .u-dropDown {
+        &.p-comment-actionsAdmin .label,
+        .u-dropDownMenu a { color: #000; }
+    }
+}

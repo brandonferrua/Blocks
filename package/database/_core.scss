@@ -1,0 +1,47 @@
+﻿// ************************************************************************************************************************
+// * Package -> Database                                                                                                  *
+// ************************************************************************************************************************
+
+// --------------------------------------------------------- //
+// Variables                                              
+// --------------------------------------------------------- //
+
+    @import "vars";
+
+// --------------------------------------------------------- //
+// Config                                              
+// --------------------------------------------------------- //
+
+    // Trigger
+
+    $package-db: true;
+
+    // Block
+
+    $trigger_b-definition-a 	: false;
+    $trigger_b-infograph-a  	: false;
+    $trigger_b-infograph-b  	: false;
+    $trigger_b-poll-a       	: false;
+
+    // Plugin
+
+    $trigger_p-filters-a		: true;
+    $trigger_p-mapper			: true;
+    $trigger_p-talentCalc		: true;
+    $trigger_b-definition-a 	: false;
+    $trigger_b-infograph-a  	: false;
+    $trigger_b-infograph-b  	: false;
+    $trigger_b-poll-a       	: false;
+    $trigger_p-base-b          	: false;
+    $trigger_p-comments-b      	: false;
+    $trigger_p-contest-a       	: false;
+    $trigger_p-header-a        	: false;
+    $trigger_p-header-b        	: false;
+    $trigger_p-header-c        	: true;
+    $trigger_p-nav-b           	: false;
+
+    // Layout
+
+    @import "layout";
+
+// END package-database

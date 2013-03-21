@@ -1,0 +1,49 @@
+﻿// ★★ Plugin -> Infractions (p-infractions-a) ★★
+
+// ✎ Infractions system
+
+// ⌚ Level 1.00 (05/14/12)
+
+// ☍ Components:
+
+// ☆ Sub-Classes:
+//     - Null
+
+// ☯ Browser Support:
+//     - Chrome
+//     - FireFox
+//     - Safari
+//     - IE9/8/7
+ 
+// -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+@mixin p-infractions-a {
+        
+    @include group;
+
+    position: relative;
+
+    table.p-infraction-creation-table {
+		li {
+			label {
+				line-height: 21px !important;
+			}
+		}
+	}
+
+	div.p-infraction-stats {		
+		@include group;
+		margin-bottom: 10px;
+		> div
+		{
+			float: left;
+			margin-right: 20px;
+			> label
+			{
+				display: inline;
+				font-weight: bold;
+			}
+		}
+	}
+
+} // END p-infractions-a

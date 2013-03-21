@@ -1,0 +1,59 @@
+﻿// ★★ Plugin -> Attachments (p-attachments-a) ★★
+
+// ✎ Default news article format
+
+// ⌚ Level 1.00 (05/04/12)
+
+// ☆ Sub-Classes:
+//     - Null
+
+// ☯ Browser Support:
+//     - Chrome
+//     - FireFox
+//     - Safari
+//     - IE9/8/7
+ 
+// -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+@mixin p-attachments-a {
+
+    @include group;
+
+    clear: left; // Clear floated attachment form button -JB (1/9/13)
+    margin-bottom: $leading;
+    padding-top: $leading;
+    
+    h3 {
+        font-family: $font-family;
+    }
+    .p-attachments-list > li {
+        float: left;
+        width: 80px;
+        height: 45px;
+        margin-bottom: 10px;
+        margin-right:10px;
+        .forum-post-content & {
+            height: 45px;
+        }
+    }
+
+    // List Items
+    .p-attachment-item {
+        width: 80px;
+        height: 45px;
+        text-align: center;
+        position: relative;
+        a {
+            @extend %u-image_prettyHover;
+            cursor: pointer;
+            &:hover { img { cursor: pointer; } }
+        }
+        .p-attachment-image {
+            @extend %u-image_pretty; 
+            height: 45px;
+            width: 80px; 
+            img { width: 105px; } 
+        }
+    }        
+
+} // END p-attachments-a

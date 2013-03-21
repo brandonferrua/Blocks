@@ -1,0 +1,344 @@
+// --------------------------------------------------------- //
+// 1. Imports
+// --------------------------------------------------------- //
+
+    // Blocks
+
+    @import "depot/block/b-breadcrumb-a";
+    @import "depot/block/b-definition-a";
+    @import "depot/block/b-figure-a";
+    @import "depot/block/b-gallery-a";
+    @import "depot/block/b-infograph-a";
+    @import "depot/block/b-infograph-b";
+    @import "depot/block/b-list-a";
+    @import "depot/block/b-list-b";
+    @import "depot/block/b-media-a";
+    @import "depot/block/b-pagination-a";
+    @import "depot/block/b-pagination-b";
+    @import "depot/block/b-pagination-c";
+    @import "depot/block/b-poll-a";
+    @import "depot/block/b-rating-a";
+    @import "depot/block/b-search-a";
+    @import "depot/block/b-search-b";
+    @import "depot/block/b-shoutbox-a";
+    @import "depot/block/b-social-a";
+    @import "depot/block/b-tab-a";
+    @import "depot/block/b-tab-b";
+    @import "depot/block/b-table-a";
+    @import "depot/block/b-tag-a";
+    @import "depot/block/b-tagCloud-a";
+    @import "depot/block/b-userAction-a";
+
+    // Plugins
+
+    @import "depot/plugin/p-article-a";
+    @import "depot/plugin/p-attachments-a";
+    @import "depot/plugin/p-avatar-select-a";
+    @import "depot/plugin/p-base-a";
+    @import "depot/plugin/p-browser-a";
+    @import "depot/plugin/p-browser-b";
+    @import "depot/plugin/p-comments-a";
+    @import "depot/plugin/p-comments-b";
+    @import "depot/plugin/p-contest-a";
+    @import "depot/plugin/p-filters-a";
+    @import "depot/plugin/p-forum-a";
+    @import "depot/plugin/p-header-a";
+    @import "depot/plugin/p-header-b";
+    @import "depot/plugin/p-header-c";
+    @import "depot/plugin/p-gallery-a";
+    @import "depot/plugin/p-guide-a";
+    @import "depot/plugin/p-infractions-a";
+    @import "depot/plugin/p-login-a";
+    @import "depot/plugin/p-mapper-a";
+    @import "depot/plugin/p-nav-a";
+    @import "depot/plugin/p-nav-b";
+    @import "depot/plugin/p-notifications-a";
+    @import "depot/plugin/p-pm-a";
+    @import "depot/plugin/p-user-a";
+    @import "depot/plugin/p-result-a";
+    @import "depot/plugin/p-streams-a";
+    @import "depot/plugin/p-talentCalc-a";
+    @import "depot/plugin/p-toc-a";
+    @import "depot/plugin/p-tournament-a";
+    @import "depot/plugin/p-widget-a";
+    @import "depot/plugin/p-user-content-manager-a";
+
+    // Themes
+
+    @import "depot/theme/t-netbar";
+    @import "depot/theme/t-footer";
+    @import "depot/theme/t-ad";
+    @import "depot/theme/t-login";
+    @import "depot/theme/t-debug";
+
+    // 3rd Party
+
+    @import "depot/vendor/v-chosen";
+
+// --------------------------------------------------------- //
+// 2. Mixin
+// --------------------------------------------------------- //
+
+    @mixin init(
+
+        // Block
+
+        $b-breadcrumb-a : $trigger_b-breadcrumb-a,
+        $b-definition-a : $trigger_b-definition-a,
+        $b-figure-a     : $trigger_b-figure-a,
+        $b-gallery-a    : $trigger_b-gallery-a,
+        $b-infograph-a  : $trigger_b-infograph-a,
+        $b-infograph-b  : $trigger_b-infograph-b,
+        $b-list-a       : $trigger_b-list-a,
+        $b-list-b       : $trigger_b-list-b,
+        $b-media-a      : $trigger_b-media-a,
+        $b-pagination-a : $trigger_b-pagination-a,
+        $b-pagination-b : $trigger_b-pagination-b,
+        $b-pagination-c : $trigger_b-pagination-c,
+        $b-poll-a       : $trigger_b-poll-a,
+        $b-rating-a     : $trigger_b-rating-a,
+        $b-search-a     : $trigger_b-search-a,
+        $b-search-b     : $trigger_b-search-b,
+        $b-shoutbox-a   : $trigger_b-shoutbox-a,
+        $b-social-a     : $trigger_b-social-a,
+        $b-tab-a        : $trigger_b-tab-a,
+        $b-tab-b        : $trigger_b-tab-b,
+        $b-table-a      : $trigger_b-table-a,
+        $b-tag-a        : $trigger_b-tag-a,
+        $b-tagCloud-a   : $trigger_b-tagCloud-a,
+        $b-userAction-a : $trigger_b-userAction-a,
+
+        // Plugin
+
+        $p-article-a       : $trigger_p-article-a,
+        $p-attachments-a   : $trigger_p-attachments-a,
+        $p-avatar-a        : $trigger_p-avatar-a,
+        $p-base-a          : $trigger_p-base-a,
+        $p-browser-a       : $trigger_p-browser-a,
+        $p-browser-b       : $trigger_p-browser-b,
+        $p-comments-a      : $trigger_p-comments-a,
+        $p-comments-b      : $trigger_p-comments-b,
+        $p-contest-a       : $trigger_p-contest-a,
+        $p-filters-a       : $trigger_p-filters-a,
+        $p-forum-a         : $trigger_p-forum-a,
+        $p-gallery-a       : $trigger_p-gallery-a,
+        $p-guide-a         : $trigger_p-guide-a,
+        $p-header-a        : $trigger_p-header-a,
+        $p-header-b        : $trigger_p-header-b,
+        $p-header-c        : $trigger_p-header-c,
+        $p-infractions-a   : $trigger_p-infractions-a,
+        $p-login-a         : $trigger_p-login-a,
+        $p-mapper-a        : $trigger_p-mapper-a,
+        $p-nav-a           : $trigger_p-nav-a,
+        $p-nav-b           : $trigger_p-nav-b,
+        $p-notifications-a : $trigger_p-notifications-a,
+        $p-pm-a            : $trigger_p-pm-a,
+        $widget			   : $trigger_p-widget-a,
+        $userContentManager: $trigger-userContentManager,
+        $p-result-a        : $trigger_p-result-a,
+        $p-streams-a       : $trigger_p-streams-a,
+        $p-talentCalc-a    : $trigger_p-talentCalc-a,
+        $p-tournament-a    : $trigger_p-tournament-a,
+        $p-toc-a           : $trigger_p-toc-a,
+        $p-user-a          : $trigger_p-user-a,
+        $p-widget-a        : $trigger_p-widget-a
+
+    ) {
+
+        // --------------------------------------------------------- //
+        // BLOCK
+        // --------------------------------------------------------- //
+
+        // Breadcrumbs
+
+        @if ($b-breadcrumb-a) { .b-breadcrumb-a { @include b-breadcrumb-a; } }
+
+        // Definition
+
+        @if ($b-definition-a) { .b-definition-a { @include b-definition-a; } }
+
+        // Breadcrumbs
+
+        @if ($b-figure-a) { .b-figure-a { @include b-figure-a; } }
+
+        // Gallery
+
+        @if ($b-gallery-a) { .b-gallery-a { @include b-gallery-a; } }
+
+        // Infograph
+
+        @if ($b-infograph-a) { .b-infograph-a { @include b-infograph-a; } }
+        @if ($b-infograph-b) { .b-infograph-b { @include b-infograph-b; } }
+
+        // List
+
+        @if ($b-list-a) { .b-list-a { @include b-list-a; } }
+        @if ($b-list-b) { .b-list-b { @include b-list-b; } }
+
+        // Media
+
+        @if ($b-media-a) { .b-media-a { @include b-media-a; } }
+
+        // Pagination
+
+        @if ($b-pagination-a) { .b-pagination-a { @include b-pagination-a; } }
+        @if ($b-pagination-b) { .b-pagination-b { @include b-pagination-b; } }
+        @if ($b-pagination-c) { .b-pagination-c { @include b-pagination-c; } }
+
+        // Poll
+
+        @if ($b-poll-a) { .b-poll-a { @include b-poll-a; } }
+
+        // Rating
+
+        @if ($b-rating-a) { .star-rating { @include b-rating-a; } } // Need to be refactored into class scopes -JB 1/2/13
+
+        // Search
+
+        @if ($b-search-a) { .b-search-a { @include b-search-a; } }
+        @if ($b-search-b) { .b-search-b { @include b-search-b; } }
+
+        // Shoutbox
+
+        @if ($b-shoutbox-a) { .b-shoutbox-a { @include b-shoutbox-a; } }
+
+        // Social
+
+        @if ($b-social-a) { .b-social-a { @include b-social-a; } }
+
+        // Tab
+
+        @if ($b-tab-a) { .b-tab-a { @include b-tab-a; } }
+        @if ($b-tab-b) { .b-tab-b { @include b-tab-b; } }
+
+        // Table
+
+        @if ($b-table-a) { .b-table-a { @include b-table-a; } }
+
+        // Tag
+
+        @if ($b-tag-a) { .b-tag-a { @include b-tag-a; } }
+
+        // Tag Cloud
+
+        @if ($b-tagCloud-a) { .b-tagCloud-a { @include b-tagCloud-a; } }
+
+        // User Action
+
+        @if ($b-userAction-a) { .b-userAction-a { @include b-userAction-a; } }
+
+        // --------------------------------------------------------- //
+        // PLUGIN
+        // --------------------------------------------------------- //
+
+        // Article
+
+        @if ($p-article-a) { .p-article-a { @include p-article-a; } }
+
+        // Attachments
+
+        @if ($p-attachments-a) { .p-attachments-a { @include p-attachments-a; } }
+
+        // Avatar Select
+
+        @if ($p-avatar-a) { .p-avatar-select-a { @include p-avatar-select-a; } }
+
+        // Base
+
+        @if ($p-base-a) { .p-base-a { @include p-base-a; } }
+
+        // Browser
+
+        @if ($p-browser-a) { .p-browser-a { @include p-browser-a; } }
+        @if ($p-browser-b) { .p-browser-b { @include p-browser-b; } }
+
+        // Comments
+
+        @if ($p-comments-a) { .p-comments-a { @include p-comments-a; } }
+        @if ($p-comments-b) { .p-comments-b { @include p-comments-b; } }
+
+        // Comments
+
+        @if ($p-contest-a) { .p-contest-a { @include p-contest-a; } }
+
+        // Filters
+
+        @if ($p-filters-a) { .p-filters-a { @include p-filters-a; } }
+
+        // Forum
+
+        @if ($p-forum-a) { .p-forum-a { @include p-forum-a; } }
+
+        // Gallery
+
+        @if ($p-gallery-a) { .p-gallery-a { @include p-gallery-a; } }
+
+        // Guide
+
+        @if ($p-guide-a) { .p-guide-a { @include p-guide-a; } }
+
+        // Header
+
+        @if ($p-header-a) { .p-header-a { @include p-header-a; } }
+        @if ($p-header-b) { .p-header-b { @include p-header-b; } }
+        @if ($p-header-c) { .p-header-c { @include p-header-c; } }
+
+        // Infractions
+
+        @if ($p-infractions-a) { .p-infractions-a { @include p-infractions-a; } }
+
+        // Login
+
+        @if ($p-login-a) { .p-login-a { @include p-login-a; } }
+
+        // Mapper
+
+        @if ($p-mapper-a) { .p-mapper-a { @include p-mapper-a; } }
+
+        // Nav
+
+        @if ($p-nav-a) { .p-nav-a { @include p-nav-a; } }
+        @if ($p-nav-b) { .p-nav-b { @include p-nav-b; } }
+
+        // Notifications
+
+        @if ($p-notifications-a) { .p-notifications-a { @include p-notifications-a; } }
+
+        // Private Messages
+
+        @if ($p-pm-a) { .p-pm-a { @include p-pm-a; } }
+
+        // Profile
+
+        @if ($p-user-a) { .p-user-a { @include p-user-a; } }
+
+        // Result
+
+        @if ($p-result-a) { @include p-result-a; }
+
+        // Streams
+
+        @if ($p-streams-a) { .p-streams-a { @include p-streams-a; } }
+
+        // Talent Calculator
+
+        @if ($p-talentCalc-a) { .p-talentCalc-a { @include p-talentCalc-a; } }
+
+        // Tournament
+
+        @if ($p-tournament-a) { .p-tournament-a { @include p-tournament-a; } }
+
+        // Table of Contents
+
+        @if ($p-toc-a) { .p-toc-a { @include p-toc-a; } }
+
+        // Widget
+
+        @if ($p-widget-a) { .p-widget-a { @include p-widget-a; } }
+
+        // User Content Manager
+        @if ($userContentManager) { .p-user-content-manager-a { @include p-user-content-manager-a; } }
+
+    }
+
+@include init;

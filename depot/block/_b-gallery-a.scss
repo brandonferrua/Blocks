@@ -1,0 +1,78 @@
+﻿// *
+// * Block -> Gallery (b-gallery-a) | http://www.url.com
+// * ====================================================================================================================
+
+
+// --------------------------------------------------------- //
+// Gallery | STATE: Base
+// --------------------------------------------------------- //
+
+%b-gallery-a_base {
+    @include group;
+
+    background: $galleryBg;
+    padding: $gallery-padding;
+
+    // --------------------------------------------------------- //
+    // Item
+    // --------------------------------------------------------- //
+
+    .b-gallery-item {
+        @include col(3);
+
+		text-align: center;
+
+        &:first-child { margin-left: 0; }
+
+        > a { 
+            @extend %u-image_prettyHover;
+
+            color: $font-color;
+            display: block;
+        }
+
+        // IE
+        // .ie7 & { width: 20%; } // No border-box support
+    }
+
+    // --------------------------------------------------------- //
+    // Image
+    // --------------------------------------------------------- //
+        
+    .b-gallery-image {
+        @extend %u-image_pretty; 
+        
+        height: 90px; // 16:9 = 160x90
+        overflow: hidden;
+        width: 100%;
+
+        img { max-width: $galleryImage-width; }
+    } 
+
+    // --------------------------------------------------------- //
+    // Caotion
+    // --------------------------------------------------------- //
+
+    .b-gallery-caption {
+        @include font(
+            $font-weight: $galleryCaption-weight,
+            $font-size: $galleryCaption-size,
+            $line-height: 1.3
+        );
+
+        > a {
+            @include truncate;
+
+            display: block;
+            padding: $gallery-padding;
+            max-width: 100%;
+        }
+    }
+
+}
+
+// --------------------------------------------------------- //
+// CONSTRUCTOR
+// --------------------------------------------------------- //
+
+@mixin b-gallery-a { @extend %b-gallery-a_base }

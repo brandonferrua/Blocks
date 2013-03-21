@@ -1,0 +1,46 @@
+﻿// *
+// * Block -> Definition (b-definition-a) | http://www.url.com
+// * ====================================================================================================================
+
+
+// --------------------------------------------------------- //
+// Definition | STATE: Base
+// --------------------------------------------------------- //
+
+%b-definition-a_base {
+    min-height: $definitionAvatar-height; // Ensure container is always at least as large as the avatar -JB (2/22/13)
+    @if ($definitionAvatar-width != null) { padding-left: $definitionAvatar-width + 10 }; // If avatar exist, create space equal to image plus spacing -JB (2/22/13)
+    margin: 0;
+
+    // --------------------------------------------------------- //
+    // Title
+    // --------------------------------------------------------- //
+
+    .b-definition-title { font-size: $definitionTitle-size; margin: 0 0 $leading; }
+    .b-definition-desc + .b-definition-title { clear: left; margin-top: $leading; } // Add space if two definition titles in same definition list & clear the previous image if it extends beyond its contents -JB (2/21/13)
+
+    // --------------------------------------------------------- //
+    // Avatar
+    // --------------------------------------------------------- //
+
+    @if ($definitionAvatar-width != null) {
+        .avatar {
+            height: $definitionAvatar-height;
+            float: left;
+            margin: 0 0 $leading (-($definitionAvatar-width + 10));
+            width: $definitionAvatar-width;
+        }
+    }
+
+    // --------------------------------------------------------- //
+    // Description
+    // --------------------------------------------------------- //
+   
+    .b-definition-desc { margin: 0 0 $leading; }
+}
+
+// --------------------------------------------------------- //
+// CONSTRUCTOR
+// --------------------------------------------------------- //
+
+@mixin b-definition-a { @extend %b-definition-a_base; }

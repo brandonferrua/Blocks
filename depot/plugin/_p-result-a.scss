@@ -1,0 +1,70 @@
+﻿// Plugin -> Result (p-result-a)
+//
+// ✎ Default results listing
+//
+// ⌚ Level 1.00 (02/017/12)
+//
+// ☍ Components:
+//     - Null
+//
+// ☆ Sub-Classes:
+//     - Null
+//
+// ☯ Browser Support:
+//     - Chrome
+//     - FireFox
+//     - Safari
+//     - Opera
+//     - IE9/8/7
+// 
+// --------------------------------------------------------- //
+
+// Mixin
+// --------------------------------------------------------- //
+
+@mixin p-result-a {
+    
+    // Base Result
+
+    .body-search .listing {
+        margin-bottom: 0; // Reset for bottom pagination spacing
+        td { padding: 5px; }
+        td:first-child { width: 50%; dt { font-weight: bold; } }
+        p:last-child,
+        dl:last-child,
+        dd:last-child { margin: 0; }
+    }
+
+    .col-summary { width: 40%; }
+    .col-date { white-space: nowrap; }
+
+    // Video Result
+    .video-result {
+        > * { display: block; }
+    }
+    .result-thumb {
+        cursor: pointer; // Overriding .tip cursor
+        display: block;
+        height: 160px;
+        width: 284px;
+        overflow: hidden;
+        float: left;
+        margin-right: 10px;
+        @extend %u-image_pretty;
+        @extend %u-image_prettyHover;
+        img { width: 290px; }
+        .u-clip:after {   // Play Button
+            content: '';
+            width: 32px;
+            height: 32px;
+            display: block;
+            position: absolute;
+            left: 50%;
+            margin-left: -16px;
+            top: 50%;
+            margin-top: -16px;
+            background: url("#{$imageURL-core}/icons/32x32/grey/icon-play.png") no-repeat center center;
+        }
+    }
+
+} // END p-result-a

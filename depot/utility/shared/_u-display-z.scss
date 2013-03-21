@@ -1,0 +1,139 @@
+﻿// Utility -> Display (u-display-z)
+
+// ✎ UNIQUE - Standard methods for display adjustments
+
+// ⌚ Level 1.00 (04/19/12)
+
+// ☍ Components:
+//     - Null
+
+// ☆ Sub-Classes:
+//     - Null
+
+// ☯ Browser Support:
+//     - Testing Required
+
+// -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+
+// Viewport - Center
+
+.viewport-wrapper {
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+
+    .viewport {
+        margin-left: -750px;
+        position: absolute;
+        top: 0; left: 50%;
+        text-align: center;
+        width: 1500px;
+
+        > img { max-width: none; }
+    }
+}
+
+// Clipping - Clip & Center
+
+.u-clip {
+    display: block;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+
+    .u-clip-wrapper {
+        position: absolute;
+        _position: static;
+        bottom: -100px;
+        top: -100px;
+        left: -100px;
+        right: -100px;
+        text-align: center;
+        white-space: nowrap;
+        word-break: normal;
+
+        .u-clip-inner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+
+            img {
+                max-width: 100%;
+                position: static !important; // !important necessary until future refactoring of p-browser-b
+                top: auto !important;
+                right: auto !important;
+                bottom: auto !important;
+                left: auto !important;
+                vertical-align: middle;
+                margin: 0 !important;
+                @include inline-block;
+            } 
+
+            .u-clip-buddy { @include inline-block; height: 100%; vertical-align: middle; }
+        }
+    }
+}
+
+.disabled, // !important used for top-level overriding
+.s-disabled {
+    @include boxShadow(none !important);
+    cursor: default !important;
+    opacity: .25 !important;
+
+    // Fallback 1 of 1
+
+    .no-opacity & {
+        filter: alpha(opacity = 25);
+        zoom: 1;
+    }
+
+    &:hover { background-position: 0 0 !important; }
+
+    &:active { @include backgroundGradient(linear-gradient(top, $button-bgTop, $button-bgBottom) !important);}
+}
+
+
+// Spoiler
+
+.spoiler { display: none; }
+
+// Placeholder for Image Beautification
+//
+//  u-image+pretty places an dropshadow border on an image
+//  u-image_prettyHover places a transparent gradient over the image and disappears on hover
+//  -------------------------------------------------------------------------------------------------
+%u-image_pretty {
+    @include boxShadow(1px 1px 2px 0);
+    @include hueAdjustment(color, $content-bgColor, 18%);
+    background: $black;
+    border: 1px solid;
+    @include hueAdjustment(color, $content-bgColor, 18%);
+    background: white;
+    border-color: #E4E4E4 #BEBEBD #BEBEBD #E4E4E4;
+    @if ($body-color == dark) {
+        color: darken($content-bgColor, 18%);
+        background: black;
+        border-color: #343434 #141414 #141414 #343434;
+    }
+}
+
+%u-image_prettyHover {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    &:after {
+        background: rgba(0,0,0,.2);
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        @include transition(background, .25s, linear);
+    }
+    &:hover:after { background: rgba(0,0,0,0); cursor: pointer; }
+}

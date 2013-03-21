@@ -1,0 +1,110 @@
+﻿// ★★ Plugin -> streams (b-streams-a) ★★
+
+// ✎ Site Breadcrumb
+
+// ☆ Sub-Classes:
+//     - Null
+
+// ☯ Browser Support:
+//     - Chrome
+//     - FireFox
+//     - Safari
+//     - IE9/8/7
+ 
+// -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+@mixin p-streams-a { 
+
+	@include group;
+
+	.section-streams.body-category-itemdetails & {
+
+		@include boxShadow(inset 0 1px 0 rgba(255, 255, 255, 0.1));
+		background: $streams-contentBg;
+		margin-top: -$content-padding;
+		margin-left: -$content-padding;
+		margin-right: -$content-padding;
+		padding: $content-padding;
+		color: $streams-fontColor;
+
+		// Details 
+
+		.p-streams-content { @include col(8); margin-left: 0; }
+
+	    // Header 
+
+		.p-streams-header {
+			@include group;
+			margin-bottom: $leading;
+			@include col(4);
+			float: right;
+			.user-actions { float: right; }
+		}
+		.p-streams-title {
+			color: $streams-fontColor;
+		}
+	}
+	
+	// Header 
+
+	.p-streams-header {
+		@include group;
+		margin-bottom: $leading;
+		.user-actions { float: right; }
+	}
+
+	// Category 
+
+	.p-streams-category { float: right; }
+	.p-streams-category a { 
+		padding: 3px 8px;  
+		font-size: 11px; 
+	}
+	.p-streams-category a:hover { background: #F1B634; color: #000; }
+
+	
+	.p-video-player { 
+		overflow: hidden; 
+		display: inline-block; 
+		position: relative; 
+		padding: 0; 
+		margin-bottom: $leading;
+		border: 1px solid rgba(0,0,0,.7); 
+		border-top-color: rgba(255,255,255,.3); 
+		@include boxShadow($browserThumbShadow); 
+	}
+	.p-video-player iframe,
+	.p-video-player object,
+	.p-video-player embed { display: block; max-width: 100%; }
+	.p-video-player-footer { margin-bottom: 10px; }
+	.p-streams-social .social-share { display: inline-block; }
+
+	// Featured Streams Widget 
+
+	.p-sidebar-a .b-list-b .b-list-item.streams-listing .b-list-title { font-size: 12px; color: #F1B634; }
+
+    // Streams Tags
+
+    .p-streams-tags { margin-top: $leading / 2 }
+
+} // END p-streams-a
+
+// Manipulating the layout if its streams
+.section-streams.body-category-itemdetails {
+	.primary-content {
+		width: 100%;
+		float: none;
+	}
+	.secondary-content {
+		margin-left: 68%;
+		padding-top: $leading;
+		min-height: 500px;
+	}
+	.b-breadcrumb { @extend %hide; }
+	#site-main > section.atf { border: none; }
+	.p-streams-chat {
+    	position: absolute;
+    	top: 472px;
+    	left: 0;
+    }
+}

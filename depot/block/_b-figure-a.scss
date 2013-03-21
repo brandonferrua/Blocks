@@ -1,0 +1,49 @@
+﻿// *
+// * Block -> Figure (b-figure-a) | http://www.url.com
+// * ====================================================================================================================
+
+
+// --------------------------------------------------------- //
+// Figure | STATE: Base
+// --------------------------------------------------------- //
+
+%b-figure-a_base {
+    @include inline-block;
+
+    width: $figure-width;
+    
+    // --------------------------------------------------------- //
+    // Image
+    // --------------------------------------------------------- //
+
+    img { display: block; }
+
+    // --------------------------------------------------------- //
+    // Caption
+    // --------------------------------------------------------- //
+
+    .caption {
+        @include borderRadius($figureCaption-borderRadius);
+        @include boxShadow($figureCaption-boxShadow);
+        @include font(
+            $font-weight: $figureFont-weight,
+            $font-size: $figureFont-size,
+            $line-height: $figureFont-lineHeight,
+            $font-family: $figureFont-family,
+            $text-transform: $figureFont-textTransform
+        );
+
+        background: $figureCaption-bg;
+        border: $figureCaption-border;
+        display: block;
+        margin: $figureCaption-margin;
+        padding: $figureCaption-padding;
+        text-align: center;
+    }
+}
+
+// --------------------------------------------------------- //
+// CONSTRUCTOR
+// --------------------------------------------------------- //
+
+@mixin b-figure-a { @extend %b-figure-a_base; }

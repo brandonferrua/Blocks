@@ -1,0 +1,184 @@
+﻿// Theme -> Ads
+
+// ✎ All Ad Units
+ 
+// -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+
+// Designated elements for Ads
+//
+//		[aria-hidden] is designated to leaderboard areas, this
+//		is a technique to take it out of the flow of the accessibilty
+//		tree, http://www.paciellogroup.com/blog/2012/05/html5-accessibility-chops-hidden-and-aria-hidden/
+// ------------------------------------------------------------------------------------------------------ //
+
+.atf,
+.btf,
+[aria-hidden="true"] {
+	@extend %t-ad_layout;
+}
+[aria-hidden="true"] { padding: $ad-container-padding; background: $ad-container-bg; }
+body[aria-hidden] { text-align: left; padding: 0; position: static; }  // reset for tinymce placing [aria-hidden] on body when lightbox is enabled
+
+// Items that need to be hidden from the user and/or the DOM
+//
+//		The following elements need to be hidden, either from premium users or
+//		stray 3rd party elements that break the layout
+// ------------------------------------------------------------------------------------------------------ //
+
+// Premium
+.hide-ads { 
+	.atf-ad-badge,
+	.atf-ad-medRect,
+	.btf-ad-medRect,
+	.atf-ad-leaderboard,
+	.btf-ad-leaderboard,
+	[aria-hidden="true"],
+	.ad-removal { @extend %t-ad_hide; }
+}
+
+// Remove premium upsell text from everything other than medium rectangles
+.atf-ad-badge .ad-removal,
+.atf-ad-leaderboard .ad-removal,
+.btf-ad-leaderboard .ad-removal,
+.footer-ad-medRect .ad-removal,
+.footer-ad-leaderboard .ad-removal,
+.footer-ad-contentAd .ad-removal { @extend %t-ad_hide; }
+
+// 3rd Party elements
+#analytics,
+.btf-ad-analytic,
+iframe[name="google_conversion_frame"],
+.atf-ad-leaderboard img[width="1"] { @extend %t-ad_hide; }
+
+// Layout styles for all ad units
+//
+//		This includes positioning and box-model styles for all ad units
+// ------------------------------------------------------------------------------------------------------ //
+
+// All Units
+.atf-ad-badge,
+.atf-ad-leaderboard,
+.atf-ad-medRect {
+	@extend %t-ad_display;
+}
+
+// Badge
+.atf-ad-badge {
+	margin-right: 7px;
+	width: 240px;
+	height: 90px;
+}
+
+// Leaderboard
+.atf-ad-leaderboard { min-width: 728px; }
+
+// Medium Rectangle
+.atf-ad-medRect,
+.btf-ad-medRect {
+	background: $ad-bg;
+	margin-bottom: $leading;
+	> iframe,
+	> object,
+	> embed,
+	> img,
+	> div,
+	> span {
+		display: block;
+		margin: 0 auto;
+	}
+    .ad-removal { display: block; font-size: 11px; line-height: 14px; text-align: center; }
+}
+
+// Footer Ads
+.footer-ad { @include group; }
+.footer-ad-contentAd {
+	width: 670px;
+	height: 250px;
+	float: left;
+}
+.footer-ad-medRect {
+	width: 300px;
+	height: 250px;
+	float: left;
+	margin-left: 2.05%;
+}
+.footer-ad-leaderboard { 
+	clear: both;
+	padding: 20px 0;
+	> iframe,
+	> object,
+	> embed,
+	> img,
+	> div,
+	> span {
+		display: block;
+		margin: 0 auto;
+	} 
+}
+
+// If ad units are placed in the atf section
+// 		
+//		This includes styles that line up the 728x90 leaderboard and 240x90 badge unit,
+//		as well as layout of two content blocks next to a Medium Rectangle, ie RoG or MMO-C
+// ------------------------------------------------------------------------------------------------------ //
+
+.atf {
+	@include group;
+    padding: $atf-padding;
+	.ie7 & .atf-ad-badge,
+	.ie7 & .atf-ad-leaderboard { float: left; } // Inline block would not work here for some reason in ie7
+	.atf-ad-medRect {
+		margin: $leading 0 $leading 2.04%;
+	}
+}
+
+// Global styles set if a site skin takeover is running
+//
+//		Mostly aesthetic but does include layout attributes
+// ------------------------------------------------------------------------------------------------------ //
+
+.ad-skin {
+	#site-main { 
+		@include boxShadow($adskin-boxShadow); 
+		cursor: default; 
+	}
+	.p-header-a { 
+		background: $adSkinHeader-bg; 
+	}
+	.atf .atf-ad-badge { 
+		@extend %t-ad_hide; 
+	}
+	#site { 
+		position: relative; 
+		background: $adskin-bgGradient; 
+		background-position: $adskin-bgGradientPosition; 
+	}
+}
+
+// Positioning of site skin takever
+//
+//		This value varies based on the height of the header
+// ------------------------------------------------------------------------------------------------------ //
+
+.site-reignofgaming.ad-skin { background-position: center 94px !important; }
+.site-fpsgeneral.ad-skin { background-position: center 40px !important; }
+.site-darthhater.ad-skin { background-position: center 33px !important; }
+
+// Ad Positiniong
+//		Centers ads and relatively positions it's children
+%t-ad_layout {
+	text-align: center;
+	position: relative;
+}
+
+// Ad Helper
+//		Removes ad completely from search engines and accessibility tree
+%t-ad_hide {
+	display: none !important; 
+	visibility: hidden !important; 
+}
+%t-ad_display {
+	@include inline-block;
+	line-height: 0px;
+	z-index: 2; // Netbar - 4 | Header - 3 | Ads - 2 | Content - 1
+}

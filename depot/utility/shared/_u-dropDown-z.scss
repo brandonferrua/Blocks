@@ -1,0 +1,140 @@
+﻿// *
+// * Utility -> DropDown (u-dropDown)
+// * ====================================================================================================================
+
+
+// --------------------------------------------------------- //
+// OLD: Mixin
+// * Keeping for legacy (primarily nav) while refactoring
+// * occurs of the dropDown -JB (12/13/12)
+// --------------------------------------------------------- //
+
+@mixin u-dropDown-z {
+
+    position: relative;
+
+    // Hide dropDown
+
+    > ul { position: absolute; left: -9999px; }
+
+    .b-list-item + .b-list-item { margin: 0; padding: 0; }
+
+    // Show dropDown
+
+    &:hover > ul { left: auto; text-indent: 0; }
+
+    // Show Third Tier dropdown
+
+    & ul .section:hover > ul { left: 100%; top: 0; }
+
+} // END u-dropDown-a
+
+// --------------------------------------------------------- //
+// BASE: DropDown
+// --------------------------------------------------------- //
+
+%u-dropDown {
+    position: relative;
+    &:hover .u-dropDownMenu { left: 0; }
+
+    > a > span { // This only work when u-dropDown is on a Button element -- BF -- 1/17/13
+        @include triangle("down", $location: "after", $size: 4px, $color: $button-fontColor);
+        &:after {
+            border-right: 4px solid transparent;
+            border-left: 4px solid transparent;
+            margin-left: 4px;
+            vertical-align: middle;
+        }
+    }
+    // --------------------------------------------------------- //
+    // Menu
+    // --------------------------------------------------------- //
+
+    .u-dropDownMenu {
+        @include borderRadius(6px);
+        @include boxShadow(0 5px 10px rgba(0, 0, 0, 0.2));
+        @include triangle("up", $location: "before", $size: 6px, $color: $dropDown-bg);
+        @include triangle("up", $location: "after", $size: 7px, $color: darken($dropDown-bg,30%));
+
+        background: $dropDown-bg;
+        -webkit-background-clip: padding-box;
+        -moz-background-clip: padding;
+        background-clip: padding-box;
+        border: 1px solid darken($secondaryColor,10%);
+        border: 1px solid rgba(0,0,0,.2);
+        max-width: 235px; 
+        min-width: 175px;
+        padding: 10px 0; 
+        position: absolute; 
+        left: -9999px; 
+        text-align: left;
+        z-index: 1000;
+
+        &:before { position: absolute; left: 11px; top: -6px; border-width: 6px; z-index: 2; }
+        &:after { position: absolute; left: 11px; top: -7px; border-width: 7px; }
+
+        li > a { color: $dropDown-color; display: block; font-size: 12px; line-height: 2em; padding: 0 10px; }
+        li > a:hover { background: $dropDown-bgHover; color: $dropDown-colorHover;  }
+    }
+}
+
+// --------------------------------------------------------- //
+// DropDown
+// --------------------------------------------------------- //
+
+.u-dropDown { @extend %u-dropDown; }
+
+
+// --------------------------------------------------------- //
+// JS DropDown
+// --------------------------------------------------------- //
+
+@if ($package-db) {
+    .dropdown {
+        padding: 0;
+        position: absolute;
+        z-index: 99;
+
+        a { border: none; background: none; }
+
+        // Column (base)
+
+        .column {
+            float: left; // Lets column break when necessary
+            width: $navItem-width;
+            border: $navItem-border;
+            border-bottom-width: 3px;
+            border-top-width: 0;
+            background-color: $navItem-bg-hover;
+            > p { 
+                border-top: $navItem-border; 
+                @include boxShadow(inset 0 1px 0 rgba(255,255,255,.1)); 
+                margin: 0; // Reset
+                a {
+                    padding: $navItemDropDown-padding; 
+                    color: $navItem-color;
+                    text-align: left;
+                    display: block;
+                    position: relative;
+                }
+                &.dropdown-hover a { background-color: $navItem-bg-hover; color: $navItem-color-hover; background:darken($navItem-bg-hover,5%); }            
+           }
+           > h3 { padding: $navItemDropDown-padding; display: block; background-color: darken($navItem-bg-hover,10%); font: $navItem-font; font-size: 14px; color: $font-colorTertiary; border-top: $navItem-border; margin: 0; cursor: default; }        
+           .has-submenu > a {
+                &:after {
+                    border-left: 5px solid $navItem-color;
+                    border-top: 5px solid transparent;
+                    border-bottom: 5px solid transparent;
+                    content: "";
+                    display: inline-block;
+                    height: 0;
+                    margin-left: 6px;
+                    width: 0;
+                    position: absolute;
+                    right: 6px;
+                    top: 7px;
+                }
+            }
+        }
+    }
+}

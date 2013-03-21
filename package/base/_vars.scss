@@ -1,0 +1,1101 @@
+﻿// ************************************************************************************************************************
+// * Base Master Variables                                                                                                *
+// * Project Documentation: http://wwww.styleguide/link/goes/here                                                         *
+// ************************************************************************************************************************
+
+// --------------------------------------------------------------------------------------------------------------------- //
+//                                              TIER 1: CORE VARIABLES                                                     
+// --------------------------------------------------------------------------------------------------------------------- //
+
+// --------------------------------------------------------- //
+// 1.) Config    
+//     
+//     These variables are core to the package. Changing a 
+//     single variable within this section will most likely
+//     have a domino effect based on the relationships they
+//     are tied to.     
+//                                         
+// --------------------------------------------------------- //
+
+    // a.) Image Paths - DO NOT CHANGE THESE PATHS
+    // -------------------------------------------------------------- //
+
+    $imageURL-core                  : "../../Blocks/images" !default;
+    $imageURL-local                 : "../images" !default;
+
+    // b.) Icon Colors
+    //
+    // Variable points to cobalt level icon sets
+    //      Can accept :
+    //          black
+    //          darkgrey
+    //          grey
+    //          lightergrey
+    //          lightgrey
+    //          white
+    // -------------------------------------------------------------- //
+
+    $icon-color                     : "darkgrey" !default;
+
+    // c.) Body Hue Adjustments
+    //
+    // Variable will change lighten or darker functions based on value
+    //      Can accept :
+    //          dark
+    //          light
+    // -------------------------------------------------------------- //
+
+    $body-color                     : "light" !default;
+
+    // c.) Project Color Palette 
+
+    $primaryColor                   : #141414 !default;                 // Color Palette Base -- Usually the darker accent - Body Background
+    $secondaryColor                 : #f9f9f9 !default;                 // Contrasting Color to Primary -- Usually the lighter accent - Content Background
+    $tertiaryColor                  : #EA903C !default;                 // Accent color -- Usually a color spot, used on links and buttons
+    $quaternaryColor                : #E1EDB9 !default;                 // Additional color
+    $quinaryColor                   : #B8986B !default;                 // Additional color
+
+    $black                          : #000000 !default;
+    $darkgrey                       : lighten($black, 25%) !default;
+    $grey                           : lighten($black, 50%) !default;
+    $lightgrey                      : lighten($black, 75%) !default;
+    $lightergrey                    : lighten($black, 90%) !default;
+    $white                          : #ffffff !default;
+
+    // c.) Options
+
+    $chrome                         : false !default;
+    $full-nav                       : false !default;
+    $full-nav-overlap               : false !default;
+    $split-nav                      : false !default;
+    $db-nav                         : false !default;
+    $db-table                       : false !default;
+    $tabSpeech                      : true !default;
+
+// --------------------------------------------------------------------------------------------------------------------- //
+//                                              TIER 2: BASE VARIABLES                                                     
+// --------------------------------------------------------------------------------------------------------------------- //
+
+// --------------------------------------------------------- //
+// 1.) Typography                                              
+// --------------------------------------------------------- //
+
+    // a.) Font Size
+    $font-size                      : 13px !default;                    // Base font size sets typographic scale
+    $font-sizeSmaller               : 11px !default;
+    $font-sizeLarger                : 15px !default;
+
+    // b.) Font Color
+    $font-color                     : #222 !default;
+    $font-colorPrimary              : #eee !default;                    // Contrasting text color for $primaryColor
+    $font-colorSecondary            : $font-color !default;             // Contrasting text color for $secondaryColor
+    $font-colorTertiary             : #fff !default;                    // Contrasting text color for $tertiaryColor
+    $font-colorQuaternary           : $font-color !default;             // Contrasting text color for $quaternaryColor
+    $font-colorQuinary              : $font-color !default;             // Contrasting text color for $quinaryColor
+    $font-colorLighter              : lighten($font-color, 5%) !default;
+    $font-colorDarker               : darken($font-color, 5%) !default;
+
+    // c.) Font Family
+    $font-family                    : inherit !default;
+
+    // d.) Leading
+    //      Note:
+    //          $leading is used for vertical spacing between elements
+    $leading                        : $font-size * 1.5 !default; // Sets vertical rhythm, em's not used due to var type incompatibilities (1.5 equivalent to 1.5em)
+
+    // d.) Line Height
+    //      Note:
+    //          $line-height is used for vertical rhythm of text
+    $line-height                    : 1.6;
+
+    // e.) Text Shadow
+    $textShadow                     : 0 1px 0px rgba(0,0,0,.4) !default;
+
+    // f.) Links
+    $link-color                     : $tertiaryColor !default;
+    $link-colorVisited              : $link-color !default;
+    $link-colorHover                : $font-color !default;
+    $link-colorActive               : $link-color !default;
+    $link-colorPrimary              : $font-colorPrimary !default;      // Contrasting link color for $primaryColor
+    $link-colorSecondary            : $font-colorSecondary !default;    // Contrasting link color for $secondaryColor
+    $link-colorTertiary             : $font-colorTertiary !default;     // Contrasting link color for $tertiaryColor
+    $link-colorQuaternary           : $font-colorQuaternary !default;   // Contrasting link color for $quaternaryColor
+    $link-colorQuinary              : $font-colorQuinary !default;      // Contrasting link color for $quinaryColor
+    $link-decoration                : none !default;
+    $link-family                    : $font-family !default;
+
+    // g.) Headers
+    $header-margin                  : 0 0 .2em !default;
+    $header-color                   : $font-color !default;
+    $header-colorVisited            : $header-color !default;
+    $header-colorHover              : $link-color !default;
+    $header-colorActive             : $header-color !default;
+    $header-family                  : $font-family !default;
+    $header-leading                 : 1.3 !default;
+    $header-letterSpacing           : 0 !default;
+    $header-size                    : 2em !default;
+    $header-weight                  : 700 !default;
+    $headerMain-bg                  : none !default;
+
+// --------------------------------------------------------- //
+// 2.) Site                                                    
+// --------------------------------------------------------- //
+
+    // "$body-" vars are pumped into the body element
+    $body-bgColor                   : $primaryColor !default;
+    $body-bgImage                   : none !default;
+    $body-bg                        : $body-bgColor $body-bgImage !default;
+    $body-bgFallback                : false !default;
+
+    // "$wrapper-" vars are pumped into #site
+    $wrapper-bgImage                : none !default;
+    $wrapper-bgColor                : transparent !default;
+    $wrapper-bg                     : $wrapper-bgColor $wrapper-bgImage !default;
+    $wrapper-padding                : 0 !default;
+
+    // "$site-" vars are pumped into #site-main
+    $site-bgImage                   : none !default;
+    $site-bgColor                   : transparent !default;
+    $site-bg                        : $site-bgImage $site-bgColor !default;
+    $site-width                     : 1000px !default;
+    $site-maxWidth                  : none !default;
+    $site-minWidth                  : 0 !default;
+    $site-padding                   : 0 !default;
+    $siteFooter-curse               : url("#{$imageURL-local}/theme/curse-logo-footer.png") no-repeat 0 0 !default; // Think this is used on DBs -- BF -- 1/23/13
+
+    // "$content-" vars are pumped into #content
+    $content-bgImage                : none !default;
+    $content-bgColor                : $secondaryColor !default;
+    $content-bg                     : $content-bgColor $content-bgImage !default;
+    $content-bgSingle               : $content-bg !default;
+    $content-border                 : none !default;
+    $content-borderSingle           : none !default;
+    $content-borderRadius           : null !default;
+    $content-padding                : $leading !default;
+    $content-boxShadow              : none !default;
+    $content-width                  : auto !default;
+    $content-maxWidth               : auto !default;
+    $content-minWidth               : auto !default;
+
+    // Right Hand Column
+    $secondaryContent-padding       : 0 0 0 1.2295% !default;
+
+    // Selection
+    $selection-bgColor              : $tertiaryColor !default;
+
+    // Global Gradients
+    // Note:
+    //      Primarily used on Buttons
+    $gradient-colorLinearTop        : $tertiaryColor !default;
+    $gradient-colorLinearBottom     : darken($gradient-colorLinearTop, 8%) !default;
+    $gradient-colorSplitTop         : inherit !default;
+    $gradient-colorSplitBottom      : inherit !default;
+
+    // Ads
+    $adSkinHeader-bg                : $body-bg !default;
+    $adskin-bgGradient              : url("#{$imageURL-core}/ads/ad-skin-gradient-top.png") fixed repeat-x !default;
+    $adskin-bgGradientPosition      : 0 0 !default;
+    $adskin-boxShadow               : 0 0 8px rgba(0,0,0,.4) !default;
+
+    // 4.) Atf
+    $atf-bg                         : $content-bgColor !default;
+    $atf-margin                     : 0 !default;
+    $atf-marginBottom               : $atf-margin !default;
+    $atf-padding                    : 0 $content-padding/2 !default;
+    $atfAd-padding                  : 0 !default;
+    $atfAdMedRec-bg                 : transparent !default;
+    $atfAdMedRec-padding            : 0 !default;
+    $ad-bg                          : transparent none !default;
+    $ad-container-padding           : 10px 0 !default;
+    $ad-container-bg                : transparent !default;
+
+// --------------------------------------------------------- //
+// 3.) Box-Model                                               
+// --------------------------------------------------------- //
+    
+    // a.) Background
+
+    $box-bgColor                    : $secondaryColor !default;
+    $box-bgImage                    : none !default; // Needs to be implemented into shorthand (not yet supported)
+    $box-bg                         : $box-bgColor !default;
+
+    // b.) Border
+
+    $box-borderColorFallback        : #444 !default;
+    $box-borderColor                : rgba(0,0,0,0.25) !default;
+    $box-borderStyle                : solid !default;
+    $box-borderWidth                : 1px !default;
+    $box-border                     : $box-borderWidth $box-borderStyle $box-borderColor !default;
+    $border-radius                  : null !default;
+
+    // c.) Box-Model
+
+    $box-padding                    : $leading / 2 !default;
+    $box-shadow                     : null !default;
+    
+    // d.) Typography
+
+    $box-fontColor                  : $font-colorSecondary !default;
+    $box-fontColorHover             : darken($font-colorSecondary, 15%) !default;
+    $box-headerColor                : $font-colorSecondary !default;
+    $box-headerColorHover           : darken($box-headerColor, 10%) !default;
+
+// --------------------------------------------------------- //
+// 4.) Buttons                                                 
+// --------------------------------------------------------- //
+    
+    // a.) Background
+
+    $button-bg                      : $gradient-colorLinearTop !default;
+    $button-bgTop                   : $gradient-colorLinearTop !default;
+    $button-bgBottom                : $gradient-colorLinearBottom !default;
+
+    // b.) Border
+
+    $button-borderRadius            : 4px !default;
+
+    // c.) Box-Model
+
+    $button-padding                 : 4px 8px !default;
+
+    // d.) Typography
+
+    $button-fontColor               : $font-colorTertiary !default;
+    $button-fontColorHover          : $button-fontColor !default;
+    $button-fontFamily              : $font-family !default;
+    $button-fontTextShadow          : $textShadow !default;
+    $button-fontSize                : $font-size !default;
+    $button-fontWeight              : bold !default;
+    $button-boxShadow               : inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 2px rgba(0, 0, 0, 0.05) !default;
+
+// --------------------------------------------------------- //
+// 5.) DropDowns                                            
+// --------------------------------------------------------- //
+
+    // a.) Background
+
+    $dropDown-bg                    : $secondaryColor !default;
+    $dropDown-bgHover               : $tertiaryColor !default;
+
+    // d.) Typography
+
+    $dropDown-color                 : $font-colorSecondary !default;
+    $dropDown-colorHover            : $font-colorTertiary !default;
+
+// --------------------------------------------------------------------------------------------------------------------- //
+//                                            TIER 3: COMPONENT VARIABLES                                                  
+// --------------------------------------------------------------------------------------------------------------------- //
+
+// --------------------------------------------------------- //
+// (3) Base                                                    
+// --------------------------------------------------------- //
+
+    // New
+    $base-bg                            : $box-bg !default;
+    $base-borderRadius                  : $border-radius !default;
+    $base-border                        : $box-border !default;
+    $base-borderColor                   : $box-borderColor !default;
+    $base-headerColor                   : $box-headerColor !default;
+    $base-headerPadding                 : 0 !default;
+    
+    // Old
+    $baseBg-image                       : url("#{$imageURL-local}/border-widgets.png") bottom left no-repeat !default;
+    $baseBg                             : $box-bg !default;
+    $baseBg-atf                         : $content-bgColor !default;
+    $baseBg-alt                         : $quaternaryColor !default;
+    $baseBorder                         : $box-border !default;
+    $baseBorder-radius                  : $border-radius !default;
+    $baseFont-color                     : $box-fontColor !default;
+    $baseFont-color-hover               : $box-fontColorHover !default;
+    $baseHeader-color                   : $box-headerColor !default;
+    $baseHeader-color-hover             : $box-headerColorHover !default;
+    $baseMargin-bottom                  : $leading / 2 !default; // check with JB - reminder
+    $basePadding                        : $box-padding !default;
+    $basePadding-bottom                 : 0 !default;
+
+// --------------------------------------------------------- //
+// (3) Blockquote                                              
+// --------------------------------------------------------- //
+
+    $blockquoteAuthor-color             : $link-color !default;
+    $blockquoteAuthor-color-hover       : $link-colorSecondary !default;
+    $blockquoteBg                       : $secondaryColor !default;
+    $blockquoteBorder-color             : lighten($blockquoteBg, 5%) !default;
+    $blockquoteBorder-size              : 3px !default;
+    $blockquoteBorder-radius            : $border-radius !default;
+    $blockquoteBorder                   : $blockquoteBorder-size solid $blockquoteBorder-color !default;
+    $blockquoteFont-color               : lighten($font-colorSecondary, 3%) !default;
+    $blockquoteLink-color               : $link-color !default;
+    $blockquoteLink-colorHover          : $link-colorHover !default;
+
+// --------------------------------------------------------- //
+// (3) Breadcrumb                                              
+// --------------------------------------------------------- //
+
+    // a.) Background
+
+    $breadcrumb-bg                      : null !default;
+    $breadcrumbItem-bg                  : null !default;
+    $breadcrumbHomeItem-bg              : $breadcrumbItem-bg !default;
+
+    // b.) Borders
+
+    $breadcrumb-border                  : null !default;
+    $breadcrumb-borderWidth             : null !default;
+    $breadcrumbItem-border              : null !default;
+    $breadcrumbItem-borderWidth         : null !default;
+
+    // c.) Box Model
+
+    $breadcrumb-borderRadius            : null !default;
+    $breadcrumbHomeItem-borderRadius    : null !default;
+    $breadcrumb-boxShadow               : null !default;
+    $breadcrumb-margin                  : 10px 0 !default;
+    $breadcrumb-padding                 : null !default;
+    $breadcrumb-height                  : $leading;
+    $breadcrumbItem-padding             : null !default;
+    $breadcrumbItem-margin              : null !default;
+    $breadcrumbHomeItem-padding         : $breadcrumbItem-padding !default;
+
+    // d.) Typography
+
+    $breadcrumb-fontStyle               : null !default;
+    $breadcrumb-fontTransform           : null !default;
+    $breadcrumb-fontLineheight          : $leading !default;
+    $breadcrumb-fontWeight              : null !default;
+    $breadcrumb-fontSize                : $font-size !default;
+    $breadcrumb-fontFamily              : $font-family !default;
+    $breadcrumbItem-color               : $link-color !default;
+    $breadcrumbItem-colorHover          : $link-colorHover !default;
+
+    // e.) Custom
+
+    $breadcrumbItem-seperator           : '--' !default;
+    $breadcrumbItem-seperator-padding   : 0 .2em !default;
+
+// --------------------------------------------------------- //
+// (3) Comments     
+//
+//     Used on article comments, PMS
+//                                           
+// --------------------------------------------------------- //
+
+    // a.) Background
+
+    $commentBg                          : $box-bg !default;
+    $commentThreadBg-color              : darken($commentBg, 5%) !default;
+
+    // b.) Borders
+
+    $commentBorderWidth-top             : 0 !default;
+    $commentBorderStyle-top             : solid !default;
+    $commentBorderColor-top             : transparent !default;
+    $commentBorderWidth-bottom          : 1px !default;
+    $commentBorderStyle-bottom          : solid !default;
+    $commentBorderColor-bottom          : $box-borderColor !default;
+
+    // c.) Box Model
+
+    $commentMargin                      : 2px !default;
+    $commentPadding                     : $box-padding !default;
+    $commentUserBoxWidth                : 75px !default;
+
+    // d.) Typography
+
+    $commentLink-color                  : $link-color !default;
+    $commentLink-colorHover             : $link-colorHover !default;   
+    $commentUserTitle-color             : darken($font-color,50%) !default;
+
+    // e.) Custom
+
+    $commentIndex-color                 : darken($commentBg,25%) !default;
+    $commentSigColor                    : $font-colorLighter !default;
+    $commentSigBorder                   : $box-border !default;
+
+// --------------------------------------------------------- //
+// (3) Forum Comments  
+//
+//     Overrides Comments vars
+//     Only used on forums
+//                                              
+// --------------------------------------------------------- //
+
+    // a.) Background
+
+    $forumComment-bg                    : $commentBg !default;
+    $forumCommentThreadBg               : lighten($commentBg, 5%) !default;
+    $forumComment-bgHeader              : darken($commentBg, 10%) !default;
+
+    // b.) Borders
+
+    $forumComment-border                : $box-border !default;
+    $forumCommentBorderWidth-top        : 0 !default;
+    $forumCommentBorderStyle-top        : solid !default;
+    $forumCommentBorderColor-top        : transparent !default;
+    $forumCommentBorderWidth-bottom     : 1px !default;
+    $forumCommentBorderStyle-bottom     : solid !default;
+    $forumCommentBorderColor-bottom     : $box-borderColor !default;
+    $forumComment-bgBorder              : lighten($commentBg, 2%) !default;
+
+    // c.) Box Model
+    
+    $forumComment-padding               : 10px 0 !default;
+    $forumComment-margin                : $commentMargin !default;
+    $forumCommentUserBoxWidth           : 150px !default;
+    $forumComment-content-margin        : $forumCommentUserBoxWidth + ($leading / 2) !default;
+
+    // d.) Typography
+
+    $forumComment-font-color            : $box-fontColor !default;
+    $forumCommentFont-colorHover        : $box-fontColorHover !default;
+    $forumComment-link-color            : $link-color !default;
+
+    // e.) Custom
+
+    $forumCommentSigColor               : $commentSigColor !default;
+    $forumCommentSigBorder              : $commentSigBorder !default;
+    $forumComment-boxShadow             : null !default;
+    
+
+// --------------------------------------------------------- //
+// (3) Clipping                                                
+// --------------------------------------------------------- //
+
+    $clip-size                          : 0 !default;
+
+// --------------------------------------------------------- //
+// (3) Contest                                                
+// --------------------------------------------------------- //
+
+    $contest-bg      : $box-bg !default;
+    $contest-border  : $box-border !default;
+    $contest-padding : 20px !default;
+
+// --------------------------------------------------------- //
+// (3) Definition                                              
+// --------------------------------------------------------- //
+
+    // c.) Box-Model
+
+    $definitionAvatar-height            : null !default;
+    $definitionAvatar-width             : null !default;
+
+    // d.) Typography
+
+    $definitionTitle-size               : $header-size !default;
+
+// --------------------------------------------------------- //
+// (3) Figure                                                  
+// --------------------------------------------------------- //
+    
+    // a.) Background
+
+    $figureCaption-bgColor              : null !default;
+    $figureCaption-bgImage              : null !default;
+    $figureCaption-bg                   : $figureCaption-bgColor $figureCaption-bgImage !default;
+
+    // b.) Borders
+
+    $figureCaption-border               : null !default;
+    $figureCaption-borderRadius         : $border-radius !default;
+
+    // c.) Box-Model
+
+    $figureCaption-margin               : 6px 0 0 !default;
+    $figureCaption-padding              : 0 $leading / 2 !default;
+    $figure-width                       : null !default;
+
+    // d.) Typography
+
+    $figureFont-weight                  : null !default;
+    $figureFont-size                    : null !default;
+    $figureFont-lineHeight              : null !default;
+    $figureFont-family                  : null !default;
+    $figureFont-textTransform           : null !default;
+
+    // e.) Custom
+
+    $figureCaption-boxShadow            : $box-shadow !default;
+
+// --------------------------------------------------------- //
+// (3) Frame                                                    
+// --------------------------------------------------------- //
+
+    $frame-bgColor                      : $tertiaryColor !default;
+    $frame-bgImage                      : none !default;
+    $frame-bg                           : $frame-bgColor $frame-bgImage !default;
+    $frame-gradient                     : false !default;
+    $frame-boxShadow                    : inset 0 1px 0 rgba(255,255,255,.1) !default;
+    $frame-size                         : 4px !default;
+    $frame-border                       : 1px solid $box-border !default;
+    $frame-borderColor                  : #E4E4E4 #BEBEBD #BEBEBD #E4E4E4 !default;
+
+// --------------------------------------------------------- //
+// (3) Table 
+//
+//     Global styles for tables
+//                                                
+// --------------------------------------------------------- //
+
+    // a.) Background
+
+    $table-bg                           : darken($primaryColor, 5%) !default;
+    $table-bgAlt                        : $table-bg !default;
+    $tableHeader-bg-top                 : $secondaryColor !default;
+    $tableHeader-bg-bottom              : darken($tableHeader-bg-top, 10%) !default;
+    $tableHeader-bg                     : $tableHeader-bg-top !default;
+    $tableCell-bg                       : $table-bg !default;
+    $tableCell-color                    : $font-color !default;
+
+    // b.) Borders
+
+    $tableHeader-border                 : $box-border !default;
+    $tableCell-border                   : $tableHeader-border !default;
+    $tableCell-borderWidth              : 1px !default;
+
+    // c.) Box-Model
+
+    $tableHeader-padding                : 4px 8px !default;
+    $tableCell-height                   : 18px !default;
+    $tableCell-padding                  : $tableHeader-padding !default;
+
+    // d.) Typography
+
+    $tableHeader-color                  : $font-colorSecondary !default;
+
+    // e.) Custom
+
+    $tableCell-boxShadow                : inset 0 1px 0 rgba(255,255,255,.1) !default;
+    
+// --------------------------------------------------------- //
+// (3) Gallery                                                 
+// --------------------------------------------------------- //
+
+    // a.) Background
+
+    $galleryBg                          : $box-bg !default;
+    $galleryBg-hover                    : $tertiaryColor !default;
+
+    // b.) Borders
+
+    $albumBorder                        : $box-border !default;
+    $galleryBorder                      : $box-border !default;
+
+    // c.) Box-Model
+
+    $galleryMargin                      : 0 0 $leading !default;
+    $gallery-padding                    : 5px !default;
+    $albumViewport                      : 240px !default;
+    $galleryViewport                    : 150px !default;
+
+    // d.) Typography
+
+    $galleryFont-color                  : $box-fontColor !default;
+    $galleryFont-color-hover            : $font-colorTertiary !default;
+
+    // e.) Custom
+
+    $galleryCaption-weight              : bold !default;
+    $galleryCaption-size                : $font-sizeSmaller !default;
+    $galleryImage-width                 : 160px !default;
+
+    
+// --------------------------------------------------------- //
+// (3) Glyph                                                   
+// --------------------------------------------------------- //
+
+    // a.) Background
+
+    $glyphBg                            : $tertiaryColor !default;
+    $glyphBg-hover                      : darken($glyphBg, 10%) !default;
+
+    // b.) Borders
+
+    $glyphBorder                        : $box-border !default;
+    $glyphBorder-radius                 : $border-radius !default;
+
+    // c.) Box-Model
+
+    $glyphMargin                        : 0 !default;
+    $glyphPadding                       : 2px 6px !default;
+    $glyphArrow-margin                  : 0 6px 0 !default;
+
+    // d.) Typography
+
+    $glyphFont-size                     : $font-size !default;
+    $glyphFont-color                    : $font-colorTertiary !default;
+    $glyphFont-color-hover              : $glyphFont-color !default;
+    $glyphArrow-color                   : $glyphBg !default;
+    $glyphArrow-color-hover             : $link-colorHover !default;
+    $glyphArrow-size                    : $leading/2 !default;
+    
+    // e.) Custom
+
+    $glyphText-shadow                   : $textShadow !default;
+    $glyphBoxShadow                     : none !default;
+
+// --------------------------------------------------------- //
+// (3) Header                                                  
+// --------------------------------------------------------- //
+
+    // a.) Background
+
+    $headerBg                           : transparent none !default;
+    $header-bgFallback                  : false !default;
+
+    // c.) Box-Model
+
+    $headerMain-margin                  : 0 0 $leading !default;
+
+    // d.) Typography
+
+    $header-transform                   : normal !default;
+
+    // e.) Custom
+
+    // Logo
+    $headerLogo                         : url("#{$imageURL-local}/logo.png") no-repeat !default;
+    $headerLogo-hover                   : 0 0 !default;
+    $headerLogo-height                  : 100px !default;
+    $headerLogo-width                   : 100px !default;
+    $headerLogo-top                     : 0px !default;
+    $headerLogo-right                   : 0px !default;
+    $headerLogo-bottom                  : 0px !default;
+    $headerLogo-left                    : 0px !default;
+    // Logo Homepage
+    $headerLogoBig                      : url("#{$imageURL-local}/logo-home.png") no-repeat center center !default;
+    $headerLogoBig-hover                : 0 0 !default;
+    $headerLogoBig-height               : 145px !default;
+    $headerLogoBig-width                : 313px !default;
+    // Tagline
+    $headerSubtitle-color               : $font-color !default;
+    $headerSubtitle-size                : $font-sizeLarger !default;
+    $headerSubtitle-weight              : bold !default;
+    $headerSubtitle-position            : absolute !default;
+    $headerSubtitle-top                 : auto !default;
+    $headerSubtitle-right               : auto !default;
+    $headerSubtitle-bottom              : auto !default;
+    $headerSubtitle-left                : -9999px !default;
+    // Search
+    $headerSearch-position              : absolute !default;
+    $headerSearch-height                : 20px !default;
+    $headerSearch-top                   : 0px !default;
+    $headerSearch-right                 : 0px !default;
+    $headerSearch-bg                    : url("#{$imageURL-core}/icons/12x12/darkgrey/icon-search-submit.png") no-repeat !default;
+    // Nav
+    $headerNav-top                      : auto !default;
+
+// --------------------------------------------------------- //
+// (3) Nav                                                     
+// --------------------------------------------------------- //
+    
+    // a.) Background
+
+    $navBg                              : transparent none !default;
+    $navItem-bg                         : $box-bg !default;
+    $navItem-bg-hover                   : $tertiaryColor !default;
+    $navItem-bg-selected                : $tertiaryColor !default;
+    $navDropDown-bg                     : $navItem-bg-hover !default;
+    $nav-itemSecondLevel-bgHover        : $tertiaryColor !default;
+
+    // b.) Borders
+
+    $navItem-border                     : 0 solid $secondaryColor !default;
+    $navItem-border-selected            : 0 solid $secondaryColor !default;
+    $nav-boxShadow                      : none !default;
+    $nav-itemSecondLevel-boxShadow      : none !default;
+    $nav-itemSecondLevel-border         : 0 solid $secondaryColor !default;
+
+    // c.) Box-Model
+    
+    $navItem-padding                    : .5em 1em !default;
+    $navItemDropDown-padding            : 5px 14px !default;
+    $navItem-width                      : 100% !default;
+
+    // d.) Typography
+
+    $navItem-color                      : $font-colorSecondary !default;
+    $navItem-color-hover                : $font-colorTertiary !default;
+    $navItem-color-selected             : $font-colorTertiary !default;
+    $navItem-font                       : bold $font-size $font-family !default;
+    $navItem-fontFamily                 : $font-family !default;
+    $navItem-fontSize                   : $font-size !default;
+    $navItem-fontWeight                 : bold !default;
+    $navItem-textShadow                 : $textShadow !default;
+    $navItem-textTransform              : normal !default;
+    $nav-itemSecondLevel-color          : $font-colorTertiary !default;
+    $nav-itemSecondLevel-fontSize       : 14px !default;
+
+// --------------------------------------------------------- //
+// (3) List                                                    
+// --------------------------------------------------------- //
+
+    // a.) Background
+
+    $listGridItem-bgColor               : $primaryColor !default;
+    $listGridItem-bgImage               : none !default;
+    $listGridItem-bg                    : $listGridItem-bgColor $listGridItem-bgImage !default;
+    $listGridItemHover-bgColor          : $listGridItem-bgColor !default;
+    $listGridItemHover-bgImage          : $listGridItem-bgImage !default;
+    $listGridItemHover-bg               : $listGridItemHover-bgColor $listGridItemHover-bgImage !default;
+    $listGridItemFull-bgColor           : $listGridItem-bgColor !default;
+    $listGridItemFull-bgImage           : $listGridItem-bgImage !default;
+    $listGridItemFull-bg                : $listGridItemFull-bgColor $listGridItemFull-bgImage !default;
+    $listGridPortrait-bgColor           : transparent !default;
+    $listGridPortrait-bgImage           : none !default;
+    $listGridPortrait-bg                : $listGridPortrait-bgColor $listGridPortrait-bgImage !default;
+
+    // b.) Borders
+
+    $listBorder                         : $box-border !default;
+
+    // c.) Box-Model
+
+    $listPadding                        : $leading !default;
+    $listGridItem-padding               : 0 !default;
+    $listGridItem-margin                : 1em !default;
+    $listGridItem-height                : auto !default; 
+    $listGridItem-width                 : 20% !default;
+    $listGridItemFull-width             : 298px !default;
+    $listGridItemFull-height            : 98px !default;
+    $listGridItemFull-margin            : 5px !default;
+    $listGridPortrait-padding           : 0 !default;
+    $listGridPortrait-width             : 100% !default;
+
+    // d.) Typography
+    
+    $listGridItem-color                 : $link-color !default;
+    $listGridItemFull-color             : $listGridItem-color !default;
+    $listGridItemHover-color            : $font-color !default;
+
+    // e.) Custom
+
+    $listGridItem-boxShadow             : null !default; 
+    $listGridItemFull-boxShadow         : $listGridItem-boxShadow !default;
+    $listGridItemPortraitFull-boxShadow : 1px 1px 4px rgba(0,0,0,.3) !default;
+
+// --------------------------------------------------------- //
+// (3) Media                                                   
+// --------------------------------------------------------- //
+
+    // a.) Background
+
+    $mediaOverlay-bg                    : rgba(0,0,0,.9) !default;
+
+    // b.) Borders
+
+    $mediaBorder-radius                 : $border-radius !default;
+    
+    // d.) Typography
+
+    $mediaTitle-color                   : $header-color !default;
+    $mediaTitle-color-hover             : $header-colorHover !default;
+    $mediaTitle-size                    : $font-sizeLarger !default; 
+
+// --------------------------------------------------------- //
+// (3) Pagination                                              
+// --------------------------------------------------------- //
+
+    // a.) Background
+
+    $paginationBg                       : $secondaryColor none !default;
+    $paginationBg-hover                 : $tertiaryColor !default;
+    $paginationBg-active                : $tertiaryColor !default;
+
+    // b.) Borders
+
+    $paginationBorder                   : $box-border!default;
+    $paginationBorder-radius            : $border-radius !default;
+
+    // c.) Box-Model
+
+    $paginationPadding                  : .3em .6em !default;
+
+    // d.) Typography
+
+    $paginationFont-color               : $font-colorSecondary !default;
+    $paginationFont-color-hover         : $font-colorTertiary !default;
+    $paginationFont-color-active        : $font-colorTertiary !default;
+    $paginationFont-size                : $font-sizeSmaller !default;
+    $paginationNext-font-color          : $link-color !default;
+
+// --------------------------------------------------------- //
+// (3) Poll                                                    
+// --------------------------------------------------------- //
+
+    // a.) Background
+
+    $pollBg                             : $box-bg !default;
+    $pollResults-bg                     : $tertiaryColor !default;
+
+    // b.) Borders
+
+    $pollBorder                         : $box-border !default;
+
+    // c.) Box-Model
+
+    $pollMargin                         : 0 0 $leading !default;
+
+    // d.) Typography
+
+    $pollChoice-color                   : $font-color !default;
+
+// --------------------------------------------------------- //
+// (3) PM                                                      
+// --------------------------------------------------------- //
+
+    // b.) Borders
+
+    $pmBorder                           : none !default;
+
+// --------------------------------------------------------- //
+// (3) Search                                                  
+// --------------------------------------------------------- //
+
+    // a.) Background
+
+    $searchBg                           : $box-bg !default;
+    $searchInput-Bg                     : none !default;
+
+    // b.) Borders
+
+    $searchBorder                       : $box-border !default;
+    $searchBorder-radius                : $border-radius !default;
+
+    // c.) Box-Model
+
+    $searchHeight                       : auto !default;
+    $searchPadding                      : $box-padding !default;
+
+// --------------------------------------------------------- //
+// (3) Shoutbox                                                
+// --------------------------------------------------------- //
+
+    // b.) Borders
+
+    $shoutbox-border                    : $box-border !default;
+
+// --------------------------------------------------------- //
+// (3) Tab                                                     
+// --------------------------------------------------------- //
+
+    // a.) Background
+
+    $tab-bg                             : $primaryColor !default;
+    $tab-bg-hover                       : lighten($tab-bg,5%) !default;
+
+    // c.) Box-Model
+
+    $tab-padding                        : 4px 8px !default;
+    $tab-maxWidth                       : 155px !default;
+
+    // d.) Typography
+
+    $tabFont-color                      : $font-colorPrimary !default;
+    $tabFont-color-hover                : $font-colorPrimary !default;
+
+// --------------------------------------------------------- //
+// (3) Tooltip                                                 
+// --------------------------------------------------------- //
+
+    // b.) Borders
+
+    $tooltip-borderWidth                : 1px !default;
+    $tooltip-borderStyle                : dotted !default;
+    $tooltip-borderColor                : lighten($font-color, 8%);
+    $tooltip-border                     : $tooltip-borderWidth $tooltip-borderStyle $tooltip-borderColor !default;
+
+// --------------------------------------------------------- //
+// (3) Modal                                                 
+// --------------------------------------------------------- //
+
+    // a.) Background
+
+    $modalBg                            : $primaryColor !default;
+    $modalBg-hover                      : #f4f4f4 !default;
+    $modalActionBg                      : $primaryColor !default;
+    $modalClose-bg                      : $primaryColor !default;
+    $modalTitleBg                       : $secondaryColor !default;
+
+    // b.) Borders
+
+    $modalBorderWidth                   : 1px !default;
+    $modalBorderColor                   : $box-borderColor !default;
+
+    // c.) Box-Model
+
+    $modalTitleHeight                   : 32px !default;
+    $modalPadding                       : 8px !default;
+
+    // d.) Typography
+
+    $modalTitleColor                    : $header-color !default;
+
+    // e.) Custom
+
+    $modalBoxShadow-outter              : 0px 0 20px rgba(0,0,0,.9) !default;
+    $modalBoxShadow-innertop            : inset 1px 1px 0 rgba(255,255,255,.1) !default;
+    $modalBoxShadow-innerbottom         : inset -1px -1px 0 rgba(255,255,255,.1) !default;
+    
+// --------------------------------------------------------- //
+// (3) User Interface Icons                                                 
+// --------------------------------------------------------- //
+
+    $icon-asc                           : url("#{$imageURL-core}/icons/12x12/green/icon-asc.png") no-repeat right center !default;
+    $icon-desc                          : url("#{$imageURL-core}/icons/12x12/green/icon-desc.png") no-repeat right center !default;
+
+// --------------------------------------------------------- //
+// (3) User Action Icons                                                 
+// --------------------------------------------------------- //
+
+    $icon-ua-sprite                     : url("#{$imageURL-core}/icons/12x12/#{$icon-color}/user-action-sprite.png") no-repeat 0 0 !default;
+    $icon-ua-quote                      : -28px -14px !default;
+    $icon-ua-reply                      : 0 -28px !default;
+    $icon-ua-delete                     : -14px 0 !default;
+    $icon-ua-report                     : -14px -28px !default;
+    $icon-ua-edit                       : -14px -14px !default;
+    $icon-ua-edit-attachments           : 0 -14px !default;
+    $icon-ua-spam                       : -28px -28px !default;
+    $icon-ua-not-spam                   : -28px 0 !default;
+    $icon-ua-warn                       : -42px 0 !default;
+    $icon-ua-add-note                   : 0 0 !default;
+    $icon-ua-remove-note                : -14px 0 !default;
+
+// --------------------------------------------------------- //
+// (3) Comment Rating Icon                                                 
+// --------------------------------------------------------- //
+
+    $icon-ua-commentRating-sprite       : url("#{$imageURL-core}/icons/24x24/#{$icon-color}/user-action-comment-sprite.png") no-repeat 0 0 !default;
+
+// --------------------------------------------------------- //
+// (3) Form Elements                                            
+// --------------------------------------------------------- //
+
+    $formBg-color                       : #fff !default;
+    $formBg-color-hover                 : #f9f9f9 !default;
+    $formFont-color                     : #000 !default;
+    $formBorder-color                   : #ddd !default;
+    $formBorder-color-active            : $tertiaryColor !default;
+    $formBg-image                       : none !default;
+    $formBg                             : $formBg-color $formBg-image !default;
+
+    $formFont-color                     : #111 !default;
+    $formFont-color-placeHolder         : #aaa !default;
+    $formFont-family                    : $font-family !default;
+
+    $formBorder-width                   : 1px !default;
+    $formBorder-style                   : solid !default;
+    $formBorder-color                   : darken($formBg-color, 10%) !default;
+    $formBorder-color-active            : darkn($formBg-color, 20%) !default;
+    $formBorder-radius                  : $border-radius !default;
+
+    $formPadding                        : 4px !default;
+    $formWidth                          : 180px !default;
+
+    $formBoxShadow                      : inset 0 1px 1px rgba(0, 0, 0, 0.075) !default;
+    $formBoxGlow                        : 0 0 4px rgba($tertiaryColor, .6) !default;
+
+    $formLabelFilter-bgColor            : $primaryColor !default;
+    $formLabelFilter-bgImage            : none !default;
+    $formLabelFilter-bg                 : $formLabelFilter-bgColor $formLabelFilter-bgImage !default;
+    $formLabelFilter-borderWidth        : $box-borderWidth !default;
+    $formLabelFilter-borderStyle        : $box-borderStyle !default;
+    $formLabelFilter-borderColor        : $box-borderColor !default;
+    $formLabelFilter-borderColorFallback: $box-borderColorFallback !default;
+    $formLabelFilter-boxShadow          : $box-shadow !default;
+    $formLabelFilterFont-weight         : normal !default;
+    $formLabelFilter-padding            : 2px 8px !default;
+
+    $formCheckbox-bgColor               : $primaryColor !default;
+    $formCheckbox-bgImage               : none !default;
+    $formCheckbox-bg                    : $formCheckbox-bgColor $formCheckbox-bgImage !default;
+    $formCheckbox-bgColorHover          : $tertiaryColor !default;
+    $formCheckbox-bgImageHover          : $formCheckbox-bgImage !default;
+    $formCheckbox-bgHover               : $formCheckbox-bgColorHover $formCheckbox-bgImageHover !default;
+    $formCheckbox-bgColorChecked        : $formCheckbox-bgColorHover !default;
+    $formCheckbox-bgImageChecked        : none !default;
+    $formCheckbox-bgChecked             : $formCheckbox-bgColorChecked $formCheckbox-bgImageChecked !default;
+    $formCheckbox-borderWidth           : $box-borderWidth !default;
+    $formCheckbox-borderStyle           : $box-borderStyle !default;
+    $formCheckbox-borderColor           : $box-borderColor !default;
+    $formCheckbox-borderColorFallback   : $box-borderColorFallback !default;
+    $formCheckbox-borderRadius          : $border-radius !default;
+    $formCheckbox-boxShadow             : $box-shadow !default;
+    $formCheckbox-height                : $font-size !default;
+    $formCheckbox-width                 : $font-size !default;
+
+// --------------------------------------------------------- //
+// (3) Multiple Bg Borders -- Not sure where this is used -- BF                                            
+// --------------------------------------------------------- //
+
+    $borderBg-path                      : none !default; 
+    $borderBg-color                     : lighten($primaryColor, 5%) !default;
+    $borderBg-width                     : 0 !default;
+    $borderBg-style                     : solid !default;
+
+// --------------------------------------------------------- //
+// (3) Tiny MCE                                           
+// --------------------------------------------------------- //
+
+    $tinyMCE-bg                         : $body-bgColor !default;
+    $tinyMCEfont-color                  : $font-color !default;
+
+// --------------------------------------------------------- //
+// (3) Alert                                         
+// --------------------------------------------------------- //
+
+    $alertBg-color                      : $box-bg !default;
+    $alertBg-image                      : none !default;
+    $alertFont-color                    : $font-color !default;
+    $alertBorder                        : $box-border !default;
+    $alertPadding                       : 8px 14px 8px 14px !default;
+
+// --------------------------------------------------------- //
+// (3) Notifications                                        
+// --------------------------------------------------------- //
+
+    $unreadNotificationColor            : darken($primaryColor,2%) !default;
+    $unreadNotificationFont-color       : $font-color !default;
+
+// --------------------------------------------------------- //
+// (3) Filters                                         
+// --------------------------------------------------------- //
+
+    $filters-padding                    : 10px !default;
+    $filters-margin                     : 0 0 $leading !default;
+    $filters-bg                         : $box-bg !default;
+    $filters-border                     : $box-border !default;
+    $filters-borderWidth                : 0 !default;
+
+// --------------------------------------------------------- //
+// (3) Table of Contents                                           
+// --------------------------------------------------------- //
+
+    $articleToC-bg                      : darken($primaryColor, 10%) !default;
+    $articleToC-headerBg                : darken($primaryColor, 20%) !default;
+    $articleToC-bgSelected              : darken($articleToC-bg, 20%) !default;
+    $articleToC-bgGradient              : transparent !default;
+    $articleToC-border                  : 1px solid $articleToC-bgSelected !default;
+    $articleToC-boxShadow               : null !default;
+    $articleToCFont-color               : $font-colorPrimary !default;
+    $articleToCFont-colorSelected       : $link-color !default;
+    $articleToC-padding                 : $box-padding !default;
+
+// --------------------------------------------------------- //
+// (3) Admin Menu in Comments                                        
+// --------------------------------------------------------- //
+
+    $adminBtn-bgTop                     : darken($commentBg, 5%) !default;
+    $adminBtn-bgBottom                  : darken($commentBg, 10%) !default;
+    $adminBtn-boxShadow                 : 0 0 2px 0 0 darken($commentBg, 10%) !default;
+    $adminBtn-boxShadow-hover           : 1px 1px 10px 0 darken($commentBg, 15%) !default;
+    $adminBtn-borderColor               : darken($commentBg, 10%) darken($commentBg, 20%) darken($commentBg, 20%) darken($commentBg, 10%) !default;
+    $adminBtn-actionIcons               : url("#{$imageURL-core}/icons/12x12/darkgrey/user-action-sprite.png") !default;
+    $adminBtn-actionIcons-hover         : url("#{$imageURL-core}/icons/12x12/lightgrey/user-action-sprite.png") !default;
+
+// --------------------------------------------------------- //
+// (3) Streams                                       
+// --------------------------------------------------------- //
+
+    $streams-contentBg                  : $primaryColor !default;
+    $streams-fontColor                  : $font-colorPrimary !default;

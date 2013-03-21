@@ -1,0 +1,89 @@
+// Blocks -> Social (b-social-a)
+
+// âœŽ This is displayed at either the top or bottom of articles, per settings from CP
+
+// -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+// --------------------------------------------------------- //
+// 1.) Mixin                                                   
+// --------------------------------------------------------- //
+
+@mixin b-social-a {
+    @include group;
+    position: relative;
+    .social-share {
+        @include inline-block;
+        height: 21px;
+        &.facebook { width: 100px; }
+        &.twitter {  }
+        &.reddit { padding-top: 1px; }
+    }
+}
+
+
+%b-social_button {
+    @include u-button-z;
+    height: 22px;
+    line-height: 20px;
+    padding: 0 6px;
+    font-family: arial, sans-serif;
+    font-size: 10px;
+    color: #fff; &:hover { color: #fff; }
+    i { @extend %u-icon_button; &:after { right: -5px; } }  
+}
+.b-social-facebook {
+    @include background($color: #3c5897, $gradient: linear-gradient(top, #4f71bf, #3c5897));
+    text-shadow: 0 -1px 0 rgba(0,0,0,.4);
+    @extend %b-social_button;
+    &:hover,
+    &:visited { color: #fff; }
+    i { background-image: url("#{$imageURL-core}/social/icon-facebook.png"); width: 12px; height: 13px; &:after { background: darken(#3c5897,5%); top: 2px; } }
+}
+.b-social-twitter {
+    @include background($color: #00afef, $gradient: linear-gradient(top, #00cffe, #00afef));
+    text-shadow: 0 -1px 0 rgba(0,0,0,.4);
+    @extend %b-social_button;
+    &:hover,
+    &:visited { color: #fff; }
+    i { background-image: url("#{$imageURL-core}/social/icon-twitter.png"); width: 15px; height: 12px; &:after { background: darken(#00afef,5%); } }
+}
+.b-social-google {
+    @include background($color: #d44027, $gradient: linear-gradient(top, #da5232, #d44027));
+    text-shadow: 0 1px 0 rgba(0,0,0,.4);
+    padding-left: 0;
+    @extend %b-social_button;
+    > span { line-height: 21px; vertical-align: top; }
+    &:hover,
+    &:visited { color: #fff; }
+    i { background-image: url("#{$imageURL-core}/social/icon-google.png"); width: 20px; height: 20px; &:after { background: darken(#d44027,5%); } }
+}
+.b-social-youtube {
+    @include background($color: #e9e9e9, $gradient: linear-gradient(top, #fff, #e9e9e9));
+    color: #111;
+    text-shadow: 0 1px 0 rgba(255,255,255,.9);
+    @extend %b-social_button;
+    &:hover,
+    &:visited { color: #111; }
+    i { background-image: url("#{$imageURL-core}/social/icon-youtube.png"); width: 16px; height: 12px; &:after { background: darken(#e9e9e9,5%); } }
+}
+.b-social-reddit {
+    @include background($color: #3c5897, $gradient: linear-gradient(top, #3c5897, #88a0d6));
+    @extend %b-social_button;
+    i { background-image: url("#{$imageURL-core}/social/icon-reddit.png"); &:after { background: darken(#3c5897,5%); } }
+}
+
+// Social
+
+.b-social-networks {
+    @include borderRadius(5px);
+    background: #111;
+    background: rgba(0,0,0,.7);
+    border: 1px solid #222;
+    box-shadow: inset 0 0 8px rgba(0,0,0,.9);
+    position: absolute;
+    top: 20px;
+    right: 300px;
+    padding: 4px 5px;
+    line-height: 20px;
+    li { @include inline-block; }
+}

@@ -1,0 +1,120 @@
+﻿// Plugin -> Browser (p-browser-a)
+//
+// ✎ Generic browser plugin
+//
+// ⌚ Level 1.00 (02/017/12)
+//
+// ☍ Components:
+//     - Content (p-browser-content)
+//     - Item (p-browser-item)
+//     - Thumb (p-browser-thumb)
+//     - Title (p-browser-title)
+//     - Byline (p-browser-byline)
+//     - Exerpt (p-browser-exerpt)
+//
+// ☆ Sub-Classes:
+//     - Null
+//
+// ☯ Browser Support:
+//     - TBD
+//
+// --------------------------------------------------------- //
+
+// Mixin
+// --------------------------------------------------------- //
+
+@mixin p-browser-a {
+    
+    // Item
+    .p-browser-item { 
+        @include group;  
+        padding: $leading 0; 
+        position: relative; 
+        border-bottom: $browserBorder; 
+    }
+
+    // Thumb
+    .p-browser-thumb { 
+        float: left;
+        position: relative;
+        > a {
+            height: 160px; // 16:9 aspect ratio, current width is 284px
+            width: 284px;
+            overflow: hidden;
+            @extend %u-image_pretty;
+            @extend %u-image_prettyHover;
+        }
+        img { width: 290px; }
+	    .u-clip:after {   // Play Button
+            content: '';
+            width: 32px;
+            height: 32px;
+            display: block;
+            position: absolute;
+            left: 50%;
+            margin-left: -16px;
+            top: 50%;
+            margin-top: -16px;
+            background: url("#{$imageURL-core}/icons/32x32/grey/icon-play.png") no-repeat center center;
+        }
+    }
+
+    // Content
+    .p-browser-content {
+        margin-left: 44.2%;
+        padding-left: $leading;
+        > a { display: block; }
+    }
+
+    // Title
+    .p-browser-title { margin-right: 45px; }
+
+    // Byline
+    .p-browser-byline {
+        @extend %hide;
+        font-size: $font-sizeSmaller;
+        margin-bottom: $leading;
+        > li { @include inline-block; }
+    }
+
+    // Comments
+    .p-browser-comments {
+        position: absolute;
+        top: $leading; right: 0;
+        > a {
+            @include u-glyph-speechBubble;
+            line-height: $leading;
+            margin-left: 8px;
+            padding: 0 8px;
+        }
+    }
+
+    // Duration
+    .p-browser-duration {
+        @include borderRadius(3px);
+        border: 1px solid #000;
+        background: #000;
+        background: rgba(0,0,0,.8);
+        font-size: 10px;
+        font-weight: bold;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        color: #fff;
+        z-index: 2;
+        padding: 0 10px;
+        line-height: 20px; 
+        white-space: nowrap;
+    }
+
+    // Exerpt
+    .p-browser-excerpt {
+        color: $font-color;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        > p:last-child { margin-bottom: 0; }
+    }
+
+    .p-browser-tags { display: none; } // Hiding for now, going to ad a parameter
+
+} // END p-browser-a

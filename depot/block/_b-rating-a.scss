@@ -1,0 +1,74 @@
+﻿// Block -> Rating (b-rating-a)
+
+// ☍ Components:
+
+// ☆ Sub-Classes:
+//     - Null
+
+// --------------------------------------------------------- //
+// Mixin
+// --------------------------------------------------------- //
+
+@mixin b-rating-a {
+	
+	& {
+		background: url("#{$imageURL-core}/ui/star-rating.png") repeat-x;
+		display: block;
+		float: none;	position: relative;
+		height: 14px;	
+		list-style: none;
+		margin: 4px 0px 4px 0px;
+		padding: 0;
+		overflow: hidden;	
+		width: 70px;
+		
+		li {
+			background: none;
+			border: none;
+			display: block;
+			float: left;
+			line-height: normal;
+			margin: 0 ;
+			position: relative;
+
+			&.one input { width:14px; z-index:6; }
+			&.two input { width:28px; z-index:5; }
+			&.three input { width:42px ; z-index:4; }
+			&.four input { width:56px; z-index:3; }
+			&.five input { width:70px; z-index:2; }
+
+			&.current-rating {
+				background-image: url("#{$imageURL-core}/ui/star-rating.png") !important;
+				background-position: 0 -14px;
+				float: none;				
+				left: 0;
+				overflow: hidden;
+				position: absolute;
+				text-indent: 9999px;				
+				top: 0;
+				z-index: 1;				
+			}			
+
+			> input {
+				border: 0;	
+				height: 14px;
+				left: 0;
+				margin: 0;				
+				overflow: hidden;
+				padding: 0;
+				position: absolute;				
+				top: 0;
+				text-indent: 9999px;
+				-webkit-appearance: none;
+				
+				[disabled] { display: none; }
+
+				&:hover { background: url("#{$imageURL-core}/ui/star-rating.png") repeat-x; }
+				
+				&:hover,
+				&:active,
+				&:focus { background-position: 0 -28px; }		
+			}
+		}
+	}
+}

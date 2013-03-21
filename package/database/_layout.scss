@@ -1,0 +1,196 @@
+﻿//
+// Database Master Layout
+//
+// ------------------------------------------------------------------------------------------
+
+// --------------------------------------------------------- //
+// 4.) Content                                                 
+// --------------------------------------------------------- //
+
+    #content {     
+        @include boxShadow($content-boxShadow);
+        @include multipleBg-border($borderBg-path,$borderBg-color,$borderBg-width,$borderBg-style);
+    }
+    // Nav 
+    .p-nav {
+        > ul {
+            @include group;
+            @extend %wrapper_content;        
+        } 
+    }
+    // Homepage Feature Images
+    .homepage-feature { 
+        @extend %hide;  
+        .body-home-index & { 
+            display: block;
+            width: 400px;
+            margin: $leading auto; 
+        } 
+    }
+    // Header 
+    header[role="banner"] { position: relative; }
+    .p-header-c {
+        .b-search-a {
+            .b-search-input { width: 325px; }
+        }
+    }
+
+
+// Footer
+// ------------------------------------------------------------------------------------------
+
+footer.main { 
+    padding: $leading 0;
+    > span { 
+        width: 59px; 
+        height: 63px; 
+        background: $siteFooter-curse; 
+        display: block; 
+        text-indent: -9999px; 
+        margin: 0 auto; 
+    }
+    #copyright { 
+        width: 800px; 
+        font-size: 11px; 
+        color: #666; 
+        text-align: center;
+        margin: 10px auto; 
+    }
+}
+
+// Homepage
+// ------------------------------------------------------------------------------------------
+
+.body-home-index {
+    height: auto;
+    header[role="banner"],
+    #homepage { background: $headerMain-bg; text-align: center; }
+
+    .p-header-c {
+        @include boxShadow(none);
+        background: transparent none;
+        margin-bottom: 0;
+
+        // Logo
+        .logo {
+            margin-bottom: $leading;
+            > a {
+                background: $headerLogoBig;
+                display: block;
+                float: none;
+                height: $headerLogoBig-height;
+                margin: 20px auto 5px;
+                text-indent: -9999px;
+                width: $headerLogoBig-width;
+            }
+        }
+        // Search
+        .b-search-a {
+            @include inline-block;
+            margin: 0;
+            float: none;
+            // Input
+            .b-search-input { width: 520px; padding: 8px 10px; font-size: 19px; }
+            .b-search-submit { padding: 8px 20px; }
+        }
+    }
+
+    // Nav
+    .p-nav-a {
+        border-top: none;
+        text-align: center;
+        margin-top: $leading;
+        .b-list-item.p-nav-item { @include inline-block; float: none; margin: 0 -2px; + .p-nav-item { margin: 0 -2px; } }
+        .section .p-nav-item { margin: 0; }
+    }
+
+    // Site Main
+    #site-main {
+        @include boxShadow(none); 
+    }
+
+    // Content
+    #content {
+        @include boxShadow(none);
+        background: transparent none; 
+        padding: 0; 
+        margin-bottom: 0;
+        position: relative;
+        width: auto;
+        max-width: 100%;
+        min-width: auto;
+        margin-bottom: 0;
+    }
+
+    #footer,
+    #footer-push {
+        @extend %hide;
+    }
+
+    // Hide Un-used elements
+    .atf-ad-leaderboard,
+    .btf-ad-leaderboard { @extend %hide; }   
+    [aria-hidden] { padding: 0; }
+}
+
+// Details 
+// ------------------------------------------------------------------------------------------
+
+.details {
+    position: relative;
+    > section { margin-bottom: $leading; }
+    .infobox {
+        @include col(3);
+        float: right;
+        text-align: center;
+    }
+    .related-header {
+        clear: both;
+        h2 {
+            font-size: 14px;
+        }
+    }
+    #related { clear: both; }
+    .hide-ads & .atf { display: none; }
+}
+
+.hide-ads {
+    #content { 
+        margin-top: 20px;
+        margin-bottom: 20px; 
+    }
+}
+
+// PTR Site 
+// ------------------------------------------------------------------------------------------
+
+.site-ptr {
+    background: #cfcfcf url("#{$imageURL-local}/bg-ptr.jpg");
+    .details .atf { display: none; }
+}
+
+// Ads 
+// ------------------------------------------------------------------------------------------
+
+.atf {
+    .details & {
+        float: right;
+        padding: 5px;
+        margin-left: 10px;
+        margin-bottom: $leading;
+        background: $box-bg;
+        border: 1px solid $box-borderColor;
+    }
+    .ad-removal {
+        display: block;
+        font-size: 11px;
+        padding: 0 5px;
+        line-height: 20px;
+    }
+}
+
+// Media Query to deal with nav breaking on browser resize
+ @media (max-width: 1105px) {
+     .p-nav-a .p-nav-item.section > a { padding: 8px 15px; }
+     .p-nav-a .p-nav-item.section > a:after { display: none !important; }
+ }

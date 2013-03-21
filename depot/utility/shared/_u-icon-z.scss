@@ -1,0 +1,159 @@
+﻿// ★★ Utility -> Icons (u-icon-z) ★★
+
+// ✎ UNIQUE - Standard icon mixin and sprite package
+
+// ⌚ Level 1.00 (04/03/12)
+
+// ☍ Components:
+//     - Null
+
+// ☆ Sub-Classes:
+//     - Null
+
+// ☯ Browser Support:
+//     - Testing Required
+ 
+// -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+
+// ★★ Mixin
+
+@mixin u-icon-z {
+    @include inline-block;
+    height: 12px;
+    line-height: 0;
+    vertical-align: middle;
+    width: 12px;
+}
+
+.u-icon-z {
+    // DropDown
+    .u-icon-dropDown { @include u-icon-z; }
+
+} // END u-icon-z
+
+// -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+
+
+// Comment Icons
+// ------------------------------------------------------------------------------------------------------ //
+
+.p-comment-actions {
+	.user-actions { 
+		.user-action {
+			.u-icon { @include inline-block; background: $icon-ua-sprite; width: 12px; height: 12px; } 
+			a:hover > span { text-decoration: underline; } 
+			span { position: relative; top: 1px; }
+			.u-icon-quote {
+				background-position: $icon-ua-quote;
+			}
+			.u-icon-reply {
+				background-position: $icon-ua-reply;
+			}
+			.u-icon-delete {
+				background-position: $icon-ua-delete;
+			}
+			.u-icon-report {
+				background-position: $icon-ua-report;
+			}
+			.u-icon-edit {
+				background-position: $icon-ua-edit;
+			}
+			.u-icon-edit-attachments {
+				background-position: $icon-ua-edit-attachments;
+			}
+			.u-icon-spam {
+				background-position: $icon-ua-spam;
+			}
+			.u-icon-not-spam {
+				background-position: $icon-ua-not-spam;
+			}
+            .u-icon-warn {
+				background-position: $icon-ua-warn;
+			}
+            .u-icon-warned {
+				background-position: $icon-ua-warn;
+                font-weight: bold;
+			}
+            .u-icon-add-note {
+				background-position: $icon-ua-add-note;
+			}
+            .u-icon-remove-note {
+				background-position: $icon-ua-remove-note;
+			}
+		}
+	}
+}
+
+// Icons on Buttons
+// ------------------------------------------------------------------------------------------------------ //
+
+	// Attachments
+	.u-button-attachments {
+		i { @extend %u-icon_button; background: url("#{$imageURL-core}/icons/16x16/white/icon-image-upload.png"); }
+	}
+
+	// Polls
+	.u-button-poll {
+		i { @extend %u-icon_button; background: url("#{$imageURL-core}/icons/16x16/white/icon-poll-create.png"); }
+	}
+
+// Icons
+// ------------------------------------------------------------------------------------------------------ //
+
+	// 8x8
+	// -------------------------------- //
+
+	// 12x12
+	// -------------------------------- //
+		// Tags
+		.u-icon-tag { @extend %u-icon_core; width: 12px; height: 12px; background: url("#{$imageURL-core}/icons/12x12/#{$icon-color}/icon-tag.png"); }
+		// Date
+		.u-icon-date { @extend %u-icon_core; width: 12px; height: 12px; background: url("#{$imageURL-core}/icons/12x12/#{$icon-color}/icon-time.png"); }
+		// Next
+		.u-icon-jump { @extend %u-icon_core; width: 12px; height: 5px; background: url("#{$imageURL-core}/icons/12x12/#{$icon-color}/icon-jump-right.png"); }
+
+	// 16x16
+	// -------------------------------- //
+		// Location
+		.u-icon-location { @extend %u-icon_core; width: 9px; height: 16px; background: url("#{$imageURL-core}/icons/16x16/#{$icon-color}/icon-location.png"); }
+		// RSS
+		.u-icon-rss { @extend %u-icon_core; width: 16px; height: 16px; background: url("#{$imageURL-core}/ui/icon-rss.png"); }
+		
+	// 24x24
+	// -------------------------------- //
+
+	// 32x32
+	// -------------------------------- //
+	
+
+// Placeholders
+// ------------------------------------------------------------------------------------------------------ //
+
+	%u-icon_button {
+		@include inline-block;
+		@extend %ir;
+		width: 16px;
+		height: 16px;
+		line-height: 0;
+	    vertical-align: text-bottom;
+	    background-position: center center;
+	    background-repeat: no-repeat;
+	    position: relative;
+	    margin-right: 10px;
+	    &:after { // Seperator
+	    	display: block;
+	    	content: '';
+	    	width: 1px;
+	    	height: 100%;
+	    	background: darken($button-bgBottom,5%);
+	    	position: absolute;
+	    	right: -8px;
+	    }
+	}
+
+	%u-icon_core {
+		@include inline-block;
+		@extend %ir;
+		margin: 0 2px;
+		background-position: center center;
+	}

@@ -1,0 +1,229 @@
+// --------------------------------------------------------- //
+// (3) Normal Page Break - TOC within Content                                                 
+// --------------------------------------------------------- //
+
+// Table of Contents (Page Break)
+
+@mixin p-toc-a  {
+
+    // Dynamically generated article TOC
+    &.s_articleToc {
+        @include background($shorthand: $articleToC-bg, $color: $articleToC-bg, $gradient: $articleToC-bgGradient);
+        border-top: $articleToC-border;
+        @include boxShadow($articleToC-boxShadow);
+        padding: $articleToC-padding;
+        @include borderRadius($border-radius);
+        h4 { background: $tertiaryColor; color: $font-colorTertiary; padding: 5px 10px; }
+        ul {
+            list-style: decimal inside;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            width: 100%;
+
+            li {
+                font-size: $font-sizeSmaller;
+                margin-left: 0;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                width: 33%;
+
+                // Fallback 1 of 1
+
+                // .ie7 & { display: list-item; } // ie7 decimal bug
+
+                &:nth-child(11n),
+                &:nth-child(11n) ~ li { margin-left: 33%; padding-left: .5em; position: absolute; }
+
+                &:nth-child(11n) { top: 0; }
+                &:nth-child(12n) { top: $leading ; }
+                &:nth-child(13n) { top: $leading * 2; }
+                &:nth-child(14n) { top: $leading * 3; }
+                &:nth-child(15n) { top: $leading * 4; }
+                &:nth-child(16n) { top: $leading * 5; }
+                &:nth-child(17n) { top: $leading * 6; }
+                &:nth-child(18n) { top: $leading * 7; }
+                &:nth-child(19n) { top: $leading * 8; }
+                &:nth-child(20n) { top: $leading * 9; }
+
+                &:nth-child(21n),
+                &:nth-child(21n) ~ li { margin-left: 66% !important; } // Important is temporary
+
+                &:nth-child(21n) { top: 0; }
+                &:nth-child(22n) { top: $leading ; }
+                &:nth-child(23n) { top: $leading * 2; }
+                &:nth-child(24n) { top: $leading * 3; }
+                &:nth-child(25n) { top: $leading * 4; }
+                &:nth-child(26n) { top: $leading * 5; }
+                &:nth-child(27n) { top: $leading * 6; }
+                &:nth-child(28n) { top: $leading * 7; }
+                &:nth-child(29n) { top: $leading * 8; }
+                &:nth-child(30n) { top: $leading * 9; }
+
+                a {
+                    color: $articleToCFont-color;
+
+                    &:hover { color: $articleToCFont-colorSelected; }
+                } 
+
+                &.current { 
+                    font-weight: bold;
+
+                    a { color: $articleToCFont-colorSelected; }
+                }
+            } 
+        }
+    }
+
+    // Sticky Nav Enabled
+    &.s-sticky {
+        @include borderRadius($border-radius);
+        border: $articleToC-border;
+        &.j-toc-floating {
+            position:   absolute;
+            left:       -96px;
+            width:      185px;
+            padding:    3px 0;
+        }
+        ul { 
+            list-style: none;
+            li > ul .b-list-item a { padding-left: 25px; } 
+        }
+        > .b-list-b > .b-list-item > a,
+        > .b-list-b > .b-list-item > span {
+            background: $tertiaryColor;
+            color: $font-colorTertiary;
+            display: block;
+            padding: 3px 10px;
+        }
+        .b-list-item {
+            width: auto;
+            clear: none;
+            font-size: 11px;
+            border-top: $articleToC-border;
+            + .b-list-item { margin: 0; padding: 0; background: transparent; }
+            a { 
+                display: block;
+                padding: 3px 10px;
+                &:hover { background: lighten($articleToC-bg,10%); }
+            }
+        }
+    }
+
+    // Static Nav at top of Page
+    &.s_static {
+        border: $articleToC-border;
+        margin-bottom: $leading;
+        h4 { background: darken($articleToC-bgSelected,10%); }
+        ul { 
+            list-style: none;
+            li > ul .b-list-item a { padding-left: 25px; } 
+        }
+        > .b-list-b { @include group; }
+        > .b-list-b > .b-list-item > a,
+        > .b-list-b > .b-list-item > span {
+            background: $tertiaryColor;
+            color: $font-colorTertiary;
+            display: block;
+            padding: 3px 10px;
+        }
+        > .b-list-b > .b-list-item > span { background: $articleToC-headerBg; }
+        .b-list-item {
+            width: auto;
+            clear: none;
+            font-size: $font-size;
+            border-top: $articleToC-border;
+            overflow: visible;
+            white-space: normal;
+            + .b-list-item { margin: 0; padding: 0; background: transparent; }
+            a { 
+                display: block;
+                padding: 3px 10px;
+                color: $link-color;
+                &:hover { background: $articleToC-bgSelected; }
+            }
+        }
+        // 2 Categories
+        &.s_2col {
+            .b-list-b > .b-list-item {
+                @include col(6);
+                &:first-child { margin-left: 0; }
+            }
+        }
+        // 3 Categories
+        &.s_3col {
+            .b-list-b > .b-list-item {
+                @include col(4);
+                &:first-child { margin-left: 0; }
+            }
+        }
+        // 4 Categories
+        &.s_4col {
+            .b-list-b > .b-list-item {
+                @include col(3);
+                &:first-child { margin-left: 0; }
+            }
+        }
+    }
+
+    // Tabbed Nav at top of Page - FPSG uses this -- BF
+    &.s_tabs {
+        .atf-articleToc-a & {
+            
+        }
+        h4 {  }
+        ul { 
+            list-style: none;
+            li > ul .b-list-item a {  } 
+        }
+        > .b-list-a { @include group; }
+        > .b-list-a > .b-list-item > a,
+        > .b-list-a > .b-list-item > span {
+            display: block;
+            padding: 5px 10px;
+        }
+        > .b-list-a > .b-list-item { 
+            @include u-dropDown-z;
+            > span { @include triangle($direction: "down", $location: ":after"); }
+        }
+        .b-list-item {
+            ul {
+                @include boxShadow(0 5px 13px rgba(0,0,0,.5));
+                background: $articleToC-bg;
+                width: 180px;
+            }
+            ul li { 
+                float: none;
+                display: block;
+            }
+            ul li > a,
+            ul li > span { 
+                font-size: $font-size;
+                color: $articleToCFont-color;
+                border-top: $articleToC-border;
+                overflow: visible;
+                white-space: normal;
+                padding: 3px 10px;
+                text-align: left;
+                &:hover { background: $articleToC-bgSelected; color: $articleToCFont-color;  }
+            }
+            ul li > span { color: darken($articleToCFont-color, 25%); &:hover { cursor: default; } }
+        }
+    }
+}
+
+// Unique styles to atf article ToC -- FPSG uses this -- BF
+.atf-articleToc-a {
+    padding: $leading $leading 0;
+    margin-bottom: $leading;
+    border-top: $articleToC-border;
+    border-bottom: $articleToC-border;
+    border-bottom-width: 3px;
+    border-bottom-color:  $tertiaryColor;
+    background: $articleToC-bg;
+    color: $articleToCFont-color;
+    position: relative;
+    z-index: 5;
+    .title { text-align: left; margin-bottom: $leading; color: $articleToCFont-color; }
+}

@@ -1,0 +1,68 @@
+// --------------------------------------------------------- //
+// Component Triggers
+// --------------------------------------------------------- //
+
+    // Blocks
+
+    $trigger_b-breadcrumb-a : false !default;
+    $trigger_b-definition-a : false !default;
+    $trigger_b-figure-a     : false !default;
+    $trigger_b-gallery-a    : false !default;
+    $trigger_b-infograph-a  : false !default;
+    $trigger_b-infograph-b  : false !default;
+    $trigger_b-list-a       : false !default;
+    $trigger_b-list-b       : false !default;
+    $trigger_b-media-a      : false !default;
+    $trigger_b-pagination-a : false !default;
+    $trigger_b-pagination-b : false !default;
+    $trigger_b-pagination-c : false !default;
+    $trigger_b-poll-a       : false !default;
+    $trigger_b-rating-a     : false !default;
+    $trigger_b-search-a     : false !default;
+    $trigger_b-search-b     : false !default;
+    $trigger_b-shoutbox-a   : false !default;
+    $trigger_b-social-a     : false !default;
+    $trigger_b-tab-a        : false !default;
+    $trigger_b-tab-b        : false !default;
+    $trigger_b-table-a      : false !default;
+    $trigger_b-tag-a        : false !default;
+    $trigger_b-tagCloud-a   : false !default;
+    $trigger_b-userAction-a : false !default;
+
+    // Plugins
+
+    $trigger_p-article-a       : false !default;
+    $trigger_p-attachments-a   : false !default;
+    $trigger_p-avatar-a        : false !default;
+    $trigger_p-base-a          : false !default;
+    $trigger_p-browser-a       : false !default;
+    $trigger_p-browser-b       : false !default;
+    $trigger_p-comments-a      : false !default;
+    $trigger_p-comments-b      : false !default;
+    $trigger_p-contest-a       : false !default;
+    $trigger_p-filters-a       : false !default;
+    $trigger_p-forum-a         : false !default;
+    $trigger_p-gallery-a       : false !default;
+    $trigger_p-guide-a         : false !default;
+    $trigger_p-header-a        : false !default;
+    $trigger_p-header-b        : false !default;
+    $trigger_p-header-c        : false !default;
+    $trigger_p-infractions-a   : false !default;
+    $trigger_p-login-a         : false !default;
+    $trigger_p-mapper-a        : false !default;
+    $trigger_p-nav-a           : false !default;
+    $trigger_p-nav-b           : false !default;
+    $trigger_p-notifications-a : false !default;
+    $trigger_p-pm-a            : false !default;
+    $trigger_p-result-a        : false !default;
+    $trigger_p-streams-a       : false !default;
+    $trigger_p-talentCalc-a    : false !default;
+    $trigger_p-toc-a           : false !default;
+    $trigger_p-tournament-a    : false !default;
+    $trigger_p-user-a          : false !default;
+    $trigger_p-widget-a        : false !default;
+    $trigger-userContentManager: false !default;
+
+    // Package
+
+    $package-db: false !default;

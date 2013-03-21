@@ -1,0 +1,126 @@
+﻿// Block -> List (b-list-b)
+//
+// ✎ Vertical, connecting block list
+//
+// ⌚ Level 1.00 (05/04/12)
+//
+// ☍ Components:
+//     - Item    (b-list-item)
+//     - Time    (b-list-time)
+//     - Button  (b-list-button)
+//     - Title   (b-list-title)
+//     - Comment (b-list-comment)
+//     - Thumb   (b-list-thumb)
+//     - View    (b-list-view)
+//     - Date    (b-list-date)
+//
+// ☆ Sub-Classes:
+//     - Comments (b-list_comments)
+//     - Videos (b-list_videos)
+//
+// ☯ Browser Support:
+//     - Chrome
+//     - FireFox
+//     - Safari
+//     - Opera
+//     - IE9/8/7
+//
+// --------------------------------------------------------- //
+// Mixin
+// --------------------------------------------------------- //
+
+@mixin b-list-b {
+
+    // Item
+    .b-list-item {
+        @include group;
+        position: relative;
+        & + .b-list-item {
+            border-top: $listBorder;
+            margin-top: $listPadding / 2;
+            padding-top: $listPadding / 2;
+        }
+        > a:only-of-type { @include group; display: block; }
+    }
+
+    // Time
+    .b-list-time { position: absolute; top: 0; right: 0; }
+
+    // Button
+    .b-list-button { position: absolute; top: 0; right: 0; }
+
+    // Title
+    .b-list-title { 
+        @include truncate;
+        color: $link-color;
+        &:hover { color: $font-color; }
+    }
+
+// Sub-classes for b-list-b
+//
+//      Alters layout based on sub-class
+// ------------------------------------------------------------------------------------------------------ //
+
+    // Comments
+    &.b-list_comments {
+        // Comment
+        .b-list-comment {
+            float: right;
+            margin-left: 1em;
+            position: relative;
+            > a { @include u-glyph-speechBubble; }
+        }
+    }
+
+    // Videos
+    &.b-list_videos {
+        // Thumb 
+        .b-list-thumb {
+            float: left;
+            position: relative;
+            margin-right: 10px;
+            z-index: 2;
+            > a {
+                width: 100px;
+                height: 56px; // 16:9 ratio
+                @extend %u-image_pretty;
+                @extend %u-image_prettyHover;
+                .u-clip:after {   // Play Button
+                    content: '';
+                    width: 32px;
+                    height: 32px;
+                    display: block;
+                    position: absolute;
+                    left: 50%;
+                    margin-left: -16px;
+                    top: 50%;
+                    margin-top: -16px;
+                    background: url("#{$imageURL-core}/icons/32x32/grey/icon-play.png") no-repeat center center;
+                }
+            } 
+            img { width: 110px; }   
+        }
+
+        // Time
+        .b-list-time {
+            position: relative;
+            top: 0;
+            left: 0;
+            display: block;
+            font-size: $font-sizeSmaller;
+        }
+
+        // Views
+        .b-list-view {
+            display: block;
+            font-size: $font-sizeSmaller;
+        }
+
+        // Date
+        .b-list-date {
+            display: block;
+            font-size: $font-sizeSmaller;
+        }
+    }
+
+} // END b-list-b

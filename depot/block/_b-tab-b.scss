@@ -1,0 +1,59 @@
+﻿// Block -> Tab (b-tab-b)
+//
+// ✎ UNIQUE - Cobalt standard tabs
+//
+// ⌚ Level 1.00 (05/08/12)
+//
+// ☍ Components:
+//     - Item (b-tab-item)
+//     - Nav (b-tab-nav)
+//     - Selected (b-tab-selected)
+//
+// ☆ Sub-Classes:
+//     - Temp
+//
+// ☯ Browser Support:
+//     - Chrome
+//     - FireFox
+//     - Safari
+//     - Opera
+//     - IE9/8/7
+//
+// --------------------------------------------------------- //
+
+// Mixin
+// --------------------------------------------------------- //
+
+@mixin b-tab-b {
+    @include group;
+    position: relative;
+    .b-tab-nav {
+        @include group;
+        margin: 0 0 $leading;
+        padding: 0;
+        border-bottom: 1px solid $tab-bg;
+        list-style: none;
+    }
+    .b-tab-item { 
+        float: left;
+        cursor: pointer;
+        > a { 
+            @include borderRadius-top(4px);
+            @include truncate;
+            @include hueAdjustment(background, $tab-bg, 10%);
+            display: block;
+            padding: $tab-padding;
+            margin-right: 2px;
+            max-width: $tab-maxWidth;
+            font-size: 14px;
+            line-height: 20px;
+            color: $tabFont-color;
+            &:hover { background: $tab-bg-hover; }
+        }
+        &.selected a {
+            background: $tab-bg;
+            color: $tabFont-color-hover;
+            font-weight: bold;
+        }
+    }
+} // END b-tab-b

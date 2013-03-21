@@ -1,0 +1,63 @@
+﻿// Block -> Media (b-media-a)
+//
+// ✎ Basic media module
+//
+// ☍ Components:
+//     - None
+//
+// ☆ Sub-Classes:
+//     - Null
+//
+// Mixin
+// --------------------------------------------------------- //
+
+// Mixin
+// --------------------------------------------------------- //
+
+@mixin b-media-a {
+    @include group;
+    position: relative;
+    margin: 10px 0;
+    .title {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(0,0,0,.4);
+        height: 80px;
+        margin: 0; 
+        padding: .5em;
+        font-size: 1.2em;
+        line-height: 1.5;
+        font-family: $font-family;
+        color: #fff;
+        font-weight: bold;
+        text-shadow: 0 0 2px rgba(0,0,0,.8);
+        z-index: 2;
+        @include transition(text-shadow, .25s, linear);
+    }
+    .b-media-content {
+        position: relative;
+        overflow: hidden;
+        a {
+            width: 100%;
+            height: 180px;
+            display: block;
+            @extend %u-image_prettyHover;
+            img { width: 350px; }
+            &:hover {  
+                .title { text-shadow: 0 0 10px rgba(255,255,255,.8), 0 0 1px rgba(0,0,0,.8); }
+            }
+        }
+    }
+    // 3 column Featured Post
+    &.featured-post {
+        float: left;
+        width: 33.33%;
+        margin-left: 0;
+        background: $secondaryColor;
+        position: relative;
+        ~ .featured-post { margin-left: 0; border-left: 1px solid #000; }
+    }
+
+} // END b-media-a

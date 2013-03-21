@@ -1,0 +1,47 @@
+﻿// *
+// * Block -> Pagination (b-pagination-a)
+// * ====================================================================================================================
+
+
+// --------------------------------------------------------- //
+// BASE: Pagination | STATE: Base
+// --------------------------------------------------------- //
+
+    %b-pagination-a_base {
+        margin: $leading 0;
+
+        .b-pagination-list {  // ...-list selector added due to duplication of b-pagination-item in markup, need to correct -JB (2/20/13)
+
+            > .b-pagination-item { 
+                @include inline-block; 
+                float: none; 
+                margin: 0 .1em; 
+
+                > a,
+                > span {
+                    @include inline-block; 
+                    @include borderRadius(3px);
+                    @include boxShadow(inset 0 1px 0 rgba(255,255,255,.1));
+
+                    border: $paginationBorder;
+                    background: $paginationBg;
+                    color: $paginationFont-color;
+                    font-weight: bold;
+                    font-size: $paginationFont-size;
+                    padding: $paginationPadding;
+
+                    &:hover { background: $paginationBg-hover; color: $paginationFont-color-hover; cursor: pointer; }
+                    &.s-active { @include boxShadow(inset 0 1px 0 rgba(255,255,255,.3)); background-color: $paginationBg-active; color: $paginationFont-color-active; }
+                }
+            }
+
+            .dots { @include inline-block; padding: nth($paginationPadding, 1) .1em; } // Make sure first element pulled from padding variable is only height -JB (2/20/13)
+        }
+
+    } // END b-pagination-a
+
+// --------------------------------------------------------- //
+// MIXIN
+// --------------------------------------------------------- //
+
+    @mixin b-pagination-a { @extend %b-pagination-a_base; }
